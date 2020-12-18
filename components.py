@@ -8,8 +8,8 @@ from selenium.webdriver.remote.webelement import WebElement
 class DropdownComponent:
     """Drop-down menu to choose option and check which option is chosen."""
 
-    def __init__(self, driver: Remote, dropdown_locator:
-    tuple, parent_element: WebElement = None) -> None:
+    def __init__(self, driver: Remote, dropdown_locator: tuple,
+                 parent_element: WebElement = None) -> None:
         """Initialize drop-down.
 
         :param driver: Remote
