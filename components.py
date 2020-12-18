@@ -34,14 +34,6 @@ class DropdownComponent:
             self.checkbox_container = Select(
                 self._driver.find_element(*self.dropdown_locator))
 
-    def which_option_is_chosen(self) -> str:
-        """Return text of chosen option.
-
-        :return: str
-        """
-        self._find_dropdown()
-        return self.checkbox_container.first_selected_option.text
-
     def choose_dropdown_option(self, data: str) -> None:
         """Choose some option.
 
