@@ -3,44 +3,30 @@ from selenium.webdriver.common.by import By
 
 class LocatorsHomeFilter:
     ALL_AUTOS = (
-        By.XPATH,
-        "//input[@id='allRadioType']")
+        By.XPATH, "//input[@id='allRadioType']")
     USED_AUTOS = (
-        By.XPATH,
-        "//input[@id='buRadioType']")
+        By.XPATH, "//input[@id='buRadioType']")
     NEW_AUTOS = (
-        By.XPATH,
-        "//input[@id='naRadioType']")
+        By.XPATH, "//input[@id='naRadioType']")
     AUTOS_FOR_DELIVERY = (
-        By.XPATH,
-        "//input[@id='orderRadioType']")
+        By.XPATH, "//input[@id='orderRadioType']")
     CHECKED_VIN = (
-        By.XPATH,
-        "//input[@id='verifiedVIN']")
+        By.XPATH, "//input[@id='verifiedVIN']")
     CATEGORY_DROPDOWN = (
-        By.XPATH,
-        "//select[@id='categories']")
+        By.XPATH, "//select[@id='categories']")
     BRAND_DROPDOWN = (
-        By.XPATH,
-        "//input[@id='brandTooltipBrandAutocompleteInput-brand']")
+        By.XPATH, "//input[@id='brandTooltipBrandAutocompleteInput-brand']")
     MODEL_DROPDOWN = (
-        By.XPATH,
-        "//input[@id='brandTooltipBrandAutocompleteInput-model']")
+        By.XPATH, "//input[@id='brandTooltipBrandAutocompleteInput-model']")
     REGION_DROPDOWN = (
-        By.XPATH,
-        "//input[@id='brandTooltipBrandAutocompleteInput-region']")
+        By.XPATH, "//input[@id='brandTooltipBrandAutocompleteInput-region']")
     YEAR_FROM_DROPDOWN = (
-        By.XPATH,
-        "//select[@id='yearFrom']")
+        By.XPATH, "//select[@id='yearFrom']")
     YEAR_TO_DROPDOWN = (
-        By.XPATH,
-        "//select[@id='yearTo']")
+        By.XPATH, "//select[@id='yearTo']")
     PRICE_FROM = (
-        By.XPATH,
-        "//input[@id='priceFrom']")
+        By.XPATH, "//input[@id='priceFrom']")
     PRICE_TO = (
-        By.XPATH,
-        "//input[@id='priceTo']")
+        By.XPATH, "//input[@id='priceTo']")
     SEARCH_BUTTON = (
-        By.XPATH,
-        "//button[@type='submit']//span[contains(text(),'Пошук')]")
+        By.XPATH, "//button[@type='submit']//span[contains(text(),'Пошук')]")
