@@ -5,6 +5,8 @@ from components import DropdownComponent
 
 
 class HomePage(BasePage):
+    """Class for the home page of 'AUTO.RIA'"""
+
     def __init__(self, driver: Remote):
         super().__init__(driver)
 
