@@ -9,50 +9,33 @@ class HomePage(BasePage):
         super().__init__(driver)
 
         self.all_autos = driver.find_element(
-            *LocatorsHomeFilter.ALL_AUTOS
-        )
+            *LocatorsHomeFilter.ALL_AUTOS)
         self.used_autos = driver.find_element(
-            *LocatorsHomeFilter.USED_AUTOS
-        )
+            *LocatorsHomeFilter.USED_AUTOS)
         self.new_autos = driver.find_element(
-            *LocatorsHomeFilter.NEW_AUTOS
-        )
+            *LocatorsHomeFilter.NEW_AUTOS)
         self.autos_for_delivery = driver.find_element(
-            *LocatorsHomeFilter.AUTOS_FOR_DELIVERY
-        )
+            *LocatorsHomeFilter.AUTOS_FOR_DELIVERY)
         self.checked_vin = driver.find_element(
-            *LocatorsHomeFilter.CHECKED_VIN
-        )
+            *LocatorsHomeFilter.CHECKED_VIN)
         self.category_dropdown = DropdownComponent(
-            driver,
-            LocatorsHomeFilter.CATEGORY_DROPDOWN
-        )
+            driver, LocatorsHomeFilter.CATEGORY_DROPDOWN)
         self.brand_dropdown = driver.find_element(
-            *LocatorsHomeFilter.BRAND_DROPDOWN
-        )
+            *LocatorsHomeFilter.BRAND_DROPDOWN)
         self.model_dropdown = driver.find_element(
-            *LocatorsHomeFilter.MODEL_DROPDOWN
-        )
+            *LocatorsHomeFilter.MODEL_DROPDOWN)
         self.region_dropdown = driver.find_element(
-            *LocatorsHomeFilter.REGION_DROPDOWN
-        )
+            *LocatorsHomeFilter.REGION_DROPDOWN)
         self.year_from_dropdown = DropdownComponent(
-            driver,
-            LocatorsHomeFilter.YEAR_FROM_DROPDOWN
-        )
+            driver, LocatorsHomeFilter.YEAR_FROM_DROPDOWN)
         self.year_to_dropdown = DropdownComponent(
-            driver,
-            LocatorsHomeFilter.YEAR_TO_DROPDOWN
-        )
+            driver, LocatorsHomeFilter.YEAR_TO_DROPDOWN)
         self.price_from = driver.find_element(
-            *LocatorsHomeFilter.PRICE_FROM
-        )
+            *LocatorsHomeFilter.PRICE_FROM)
         self.price_to = driver.find_element(
-            *LocatorsHomeFilter.PRICE_TO
-        )
+            *LocatorsHomeFilter.PRICE_TO)
         self.search_button = driver.find_element(
-            *LocatorsHomeFilter.SEARCH_BUTTON
-        )
+            *LocatorsHomeFilter.SEARCH_BUTTON)
 
     def click_all_autos(self):
         self.all_autos.click()
@@ -69,19 +52,19 @@ class HomePage(BasePage):
     def click_checked_vin(self):
         self.checked_vin.click()
 
-    def choose_brand(self, input):
+    def choose_brand(self, input: str):
         self.brand_dropdown.send_keys(input)
 
-    def choose_model(self, input):
+    def choose_model(self, input: str):
         self.model_dropdown.send_keys(input)
 
-    def choose_region(self, input):
+    def choose_region(self, input: str):
         self.region_dropdown.send_keys(input)
 
-    def set_price_from(self, input):
+    def set_price_from(self, input: str):
         self.price_from.send_keys(input)
 
-    def set_price_to(self, input):
+    def set_price_to(self, input: str):
         self.price_to.send_keys(input)
 
     def click_search_button(self):
