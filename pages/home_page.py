@@ -1,8 +1,6 @@
 from selenium.webdriver import Remote
 from pages.base_page import BasePage
 from locators import LocatorsHomeFilter
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from components import DropdownComponent
 
 
