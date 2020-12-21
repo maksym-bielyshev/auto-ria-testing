@@ -35,16 +35,16 @@ class LocatorsHomeFilter:
 class LocatorsCategoryPage:
     ALL_AUTOS_BUTTON = (
         By.XPATH,
-        "//label[contains(text(),'Всі')]")
+        "//label[@for='indexName_all']")
     USED_AUTOS_BUTTON = (
         By.XPATH,
-        "//label[contains(text(),'Вживані')]")
+        "//label[@for='indexName_bu']")
     NEW_AUTOS_BUTTON = (
         By.XPATH,
-        "//label[contains(text(),'Нові')]")
+        "//label[@for='indexName_new']")
     AUTOS_FOR_DELIVERY_BUTTON = (
         By.XPATH,
-        "//label[contains(text(),'Під пригон')]")
+        "//label[@for='indexName_order']")
     VERIFIED_VIN_CHECKBOX = (
         By.XPATH,
         "//label[@for='verifiedVIN']")
@@ -56,43 +56,43 @@ class LocatorsCategoryPage:
         "//select[@id='category']")
     SEDAN_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Седан')]")
+        "//label[@for='bodyBlockItem_0']")
     CROSSOVER_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Позашляховик / Кросовер')]")
+        "//label[@for='bodyBlockItem_1']")
     MINIVAN_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Мінівен')]")
+        "//label[@for='bodyBlockItem_2']")
     HATCHBACK_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Хетчбек')]")
+        "//label[@for='bodyBlockItem_3']")
     UNIVERSAL_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Унiверсал')]")
+        "//label[@for='bodyBlockItem_4']")
     COUPE_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Купе')]")
+        "//label[@for='bodyBlockItem_5']")
     PASSENGER_VAN_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Легковий фургон (до 1,5т)')]")
+        "//label[@for='bodyBlockItem_6']")
     CONVERTIBLE_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Кабріолет')]")
+        "//label[@for='bodyBlockItem_7']")
     PICKUP_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Пікап')]")
+        "//label[@for='bodyBlockItem_8']")
     LIFTBACK_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Ліфтбек')]")
+        "//label[@for='bodyBlockItem_9']")
     LIMOUSINE_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Лімузин')]")
+        "//label[@for='bodyBlockItem_10']")
     OTHER_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Інший')]")
+        "//label[@for='bodyBlockItem_11']")
     ROADSTER_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Родстер')]")
+        "//label[@for='bodyBlockItem_12']")
 
     SHOW_ALL_BODIES_LINK = (
         By.XPATH,
@@ -119,7 +119,7 @@ class LocatorsCategoryPage:
         "//div[@id='brandTooltip']//a[@id='brandTooltipAddMore']")
     EXCLUDE_BRAND_LINK = (
         By.XPATH,
-        "//span[@title='Виключити марку']")
+        "//a[@id='brandExcludeSelect']")
     EXCLUDE_BRAND_FIELD = (
         By.XPATH,
         "//label[@for='brandTooltipBrandAutocompleteInput-1']")
@@ -134,7 +134,7 @@ class LocatorsCategoryPage:
         "//select[@name='price.currency']")
     BARGAIN_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'можливий торг')]")
+        "//label[@for='priceBlockOptionsAuction']")
     REGION_LINK = (
         By.CLASS_NAME,
         "label gray")
@@ -149,19 +149,19 @@ class LocatorsCategoryPage:
         "//input[@name='mileage.lte']")
     MANUAL_MECHANICS_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Ручна / Механіка')]")
+        "//label[@for='gearboxBlockItem_0']")
     AUTOMATON_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Автомат')]")
+        "//label[@for='gearboxBlockItem_1']")
     TIPTRONIC_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Типтронік')]")
+        "//label[@for='gearboxBlockItem_2']")
     ROBOT_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Робот')]")
+        "//label[@for='gearboxBlockItem_3']")
     VARIATOR_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Варіатор')]")
+        "//label[@for='gearboxBlockItem_4']")
     SHOW_ALL_GEARBOXES_LINK = (
         By.XPATH,
         "//div[@title='Коробка передач']//"
@@ -172,19 +172,19 @@ class LocatorsCategoryPage:
         "a[@class='el-selected close'][contains(text(),'Сховати')]")
     PETROL_CHECKBOX = (
         By.XPATH,
-        "//label[@title='Бензин']")
+        "//label[@for='fuelBlockItem_0']")
     DIESEL_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Дизель')]")
+        "//label[@for='fuelBlockItem_1']")
     GAS_CHECKBOX = (
         By.XPATH,
-        "//label[@title='Газ']")
+        "//label[@for='fuelBlockItem_2']")
     GAS_PETROL_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Газ / Бензин')]")
+        "//label[@for='fuelBlockItem_3']")
     HYBRID_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Гібрид')]")
+        "//label[@for='fuelBlockItem_4']")
     SHOW_ALL_FUEL_LINK = (
         By.XPATH,
         "//div[@title='Паливо']//"
@@ -195,25 +195,25 @@ class LocatorsCategoryPage:
         "a[@class='el-selected close'][contains(text(),'Сховати')]")
     ELECTRO_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Електро')]")
+        "//label[@for='fuelBlockItem_5']")
     OTHER_FUEL_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Інше')]")
+        "//label[@for='fuelBlockItem_6']")
     METHANE_GAS_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Газ метан')]")
+        "//label[@for='fuelBlockItem_7']")
     PROPANE_BUTANE_GAS_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Газ пропан-бутан')]")
+        "//label[@for='fuelBlockItem_8']")
     ALL_WHEEL_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Повний')]")
+        "//label[@for='driveBlockItem_0']")
     FRONT_WHEEL_CHEKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Передній')]")
+        "//label[@for='driveBlockItem_1']")
     BACK_WHEEL_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Задній')]")
+        "//label[@for='driveBlockItem_2']")
     ENGINE_CAPACITY_FROM_FIELD = (
         By.XPATH,
         "//input[@name='engine.gte']")
@@ -222,16 +222,16 @@ class LocatorsCategoryPage:
         "//input[@name='engine.lte']")
     CUSTOMS_CLEARANCE_CHECKBOX = (
         By.XPATH,
-        "//label[@title='Розмитнені']")
+        "//label[@for='_custom1']")
     NON_CUSTOMS_CLEARANCE_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Нерозмитнені')]")
+        "//label[@for='_custom2']")
     AUTO_IN_UKRAINE_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Авто в Україні')]")
+        "//label[@for='_abroad1']")
     AUTO_NOT_IN_UKRAINE_CHECKBOX = (
         By.XPATH,
-        "//label[contains(text(),'Авто не в Україні')]")
+        "//label[@for='_abroad2']")
     LACQUER_SELECT = (
         By.XPATH,
         "//label[@for='paintCondition-1']")
