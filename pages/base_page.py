@@ -12,5 +12,6 @@ class BasePage:
         self._driver = driver
 
     def switch_to_ukrainian(self):
-        if self._driver.current_url != "https://auto.ria.com/uk/":
-            self._driver.get("https://auto.ria.com/uk/")
+        if "auto.ria.com/uk" not in self._driver.current_url:
+            self._driver.find_element_by_xpath(
+                "//a[@class='selectLang ml-r']").click()
