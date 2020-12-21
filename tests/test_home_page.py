@@ -2,7 +2,7 @@ from tests.base_test import BaseTest
 from pages.home_page import HomePage
 import pytest
 from tests.conftest import get_test_data
-
+from pages.base_page import BasePage
 
 class TestHomePage(BaseTest):
     """Class for the 'Home' page of 'AUTO.RIA'"""
@@ -17,7 +17,7 @@ class TestHomePage(BaseTest):
 
     @pytest.mark.parametrize('category, expected_url',
                              get_test_data('category_dropdown.csv'))
-    def test_categories_dropdown(self, category, expected_url) -> None:
+    def test_categories_dropdown_transition(self, language, category, expected_url) -> None:
         """Check all the options in the "Categories" dropdown.
 
         Steps:
@@ -29,6 +29,10 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
+        if language == "ua":
+            BasePage.switch_to_ukrainian(self.driver)
+        else:
+            BasePage.s
         self.home_page.category_dropdown.choose_dropdown_option(category)
         self.home_page.click_search_button()
         assert self.driver.current_url == expected_url
