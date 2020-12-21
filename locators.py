@@ -274,3 +274,31 @@ class LocatorsCategoryPage:
     SEARCH_LINK = (
         By.ID,
         "floatingSearchButton")
+
+    PRODUCT_CARD_OBJECT = (
+        By.CLASS_NAME,
+        "content-bar")
+    PREVIOUS_PAGE_LINK = (
+        By.XPATH,
+        "//span[@class='page-item prev']//a")
+    NEXT_PAGE_LINK = (
+        By.XPATH,
+        "//span[@class='page-item next text-r']")
+    FIRST_PAGE_LINK = (
+        By.XPATH,
+        "//div[@id='searchPagination']//span[2]//a")
+    LAST_PAGE_LINK = (
+        By.XPATH,
+        "//div[@id='searchPagination']//span[9]//a")
+    FIRST_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@id='searchPagination']//span[4]//a")
+    SECOND_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@id='searchPagination']//span[5]//a")
+    THIRD_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@id='searchPagination']//span[6]//a")
+    FOURTH_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@id='searchPagination']//span[7]//a")
