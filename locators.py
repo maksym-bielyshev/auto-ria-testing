@@ -30,3 +30,40 @@ class LocatorsHomeFilter:
         By.XPATH, "//input[@id='priceTo']")
     SEARCH_BUTTON = (
         By.XPATH, "//button[@type='submit']//span[contains(text(),'Пошук')]")
+
+
+class LocatorsProductPage:
+    SELLER_NAME_TEXT = (
+        By.CLASS_NAME, "seller_info_name bold")
+    SHOW_PHONE_LINK = (
+        By.CLASS_NAME, "size14 phone_show_link link-dotted mhide")
+    SELLER_PHONE_TEXT = (
+        By.XPATH, "//span[contains(@title,'телефон')]")
+    AUTO_TITLE = (
+        By.CLASS_NAME, "auto-content_title")
+    MILE_AGE_TEXT = (
+        By.XPATH, "//dd[contains(@class,'mhide')]")
+    ENGINE_TEXT = (
+        By.XPATH, "//div[contains(@class,'box-panel description-car')]//dd[3]")
+    GEARBOX_TEXT = (
+        By.XPATH, "//dd[5]")
+    WHEEL_TEXT = (
+        By.XPATH, "//dd[6]")
+    COLOR_TEXT = (
+        By.XPATH, "//dd[7]")
+    FULL_DESCRIPTION_TEXT = (
+        By.XPATH, "//div[@id='full-description']")
+    LACQUER_TEXT = (
+        By.XPATH, "//dd[9]")
+    TECHNICAL_CONDITION_TEXT = (
+        By.XPATH, "//dd[10]")
+    CONDITION_TEXT = (
+        By.XPATH, "//dd[11]")
+    SAFETY_TEXT = (
+        By.XPATH, "//dd[12]")
+    COMFORT_TEXT = (
+        By.XPATH, "//dd[13]")
+    MEDIA_TEXT = (
+        By.XPATH, "//dd[14]")
+    OTHER_TEXT = (
+        By.XPATH, "//dd[15]")
