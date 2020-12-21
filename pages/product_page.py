@@ -10,37 +10,41 @@ class ProductPage(BasePage):
     def __init__(self, driver: Remote):
         super().__init__(driver)
 
-        self.SELLER_NAME_TEXT = driver.find_element(
+        self.seller_name_text = driver.find_element(
             LocatorsProductPage.SELLER_NAME_TEXT)
-        self.SHOW_PHONE_LINK = driver.find_element(
+        self.show_phone_link = driver.find_element(
             LocatorsProductPage.SHOW_PHONE_LINK)
-        self.SELLER_PHONE_TEXT = driver.find_element(
+        self.seller_phone_text = driver.find_element(
             LocatorsProductPage.SELLER_PHONE_TEXT)
-        self.AUTO_TITLE = driver.find_element(
+        self.auto_title = driver.find_element(
             LocatorsProductPage.AUTO_TITLE)
-        self.MILE_AGE_TEXT = driver.find_element(
+        self.mile_age_text = driver.find_element(
             LocatorsProductPage.MILE_AGE_TEXT)
-        self.ENGINE_TEXT = driver.find_element(
+        self.engine_text = driver.find_element(
             LocatorsProductPage.ENGINE_TEXT)
-        self.GEARBOX_TEXT = driver.find_element(
+        self.gearbox_text = driver.find_element(
             LocatorsProductPage.GEARBOX_TEXT)
-        self.WHEEL_TEXT = driver.find_element(
+        self.wheel_text = driver.find_element(
             LocatorsProductPage.WHEEL_TEXT)
-        self.COLOR_TEXT = driver.find_element(
+        self.color_text = driver.find_element(
             LocatorsProductPage.COLOR_TEXT)
-        self.FULL_DESCRIPTION_TEXT = driver.find_element(
+        self.full_description_text = driver.find_element(
             LocatorsProductPage.FULL_DESCRIPTION_TEXT)
-        self.LACQUER_TEXT = driver.find_element(
+        self.lacquer_text = driver.find_element(
             LocatorsProductPage.LACQUER_TEXT)
-        self.TECHNICAL_CONDITION_TEXT = driver.find_element(
+        self.technical_condition_text = driver.find_element(
             LocatorsProductPage.TECHNICAL_CONDITION_TEXT)
-        self.CONDITION_TEXT = driver.find_element(
+        self.condition_text = driver.find_element(
             LocatorsProductPage.CONDITION_TEXT)
-        self.SAFETY_TEXT = driver.find_element(
+        self.safety_text = driver.find_element(
             LocatorsProductPage.SAFETY_TEXT)
-        self.COMFORT_TEXT = driver.find_element(
+        self.comfort_text = driver.find_element(
             LocatorsProductPage.COMFORT_TEXT)
-        self.MEDIA_TEXT = driver.find_element(
+        self.media_text = driver.find_element(
             LocatorsProductPage.MEDIA_TEXT)
-        self.OTHER_TEXT = driver.find_element(
+        self.other_text = driver.find_element(
             LocatorsProductPage.OTHER_TEXT)
+
+    def get_phone_number(self):
+        self.show_phone_link.click()
+        return self.seller_phone_text

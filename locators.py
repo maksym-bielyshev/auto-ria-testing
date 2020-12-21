@@ -38,7 +38,9 @@ class LocatorsProductPage:
     SHOW_PHONE_LINK = (
         By.CLASS_NAME, "size14 phone_show_link link-dotted mhide")
     SELLER_PHONE_TEXT = (
-        By.XPATH, "//span[contains(@title,'телефон')]")
+        By.XPATH, "//section[@id='userInfoBlock']//"
+                  "div[contains(@class,'phones_item')]//"
+                  "span['data-phone-number']")
     AUTO_TITLE = (
         By.CLASS_NAME, "auto-content_title")
     MILE_AGE_TEXT = (
