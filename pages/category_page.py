@@ -146,6 +146,24 @@ class CategoryPage(BasePage):
             LocatorsCategoryPage.ADVANCED_SEARCH_LINK)
         self.search_link = driver.find_element(
             LocatorsCategoryPage.SEARCH_LINK)
+        self.product_card = driver.find_element(
+            LocatorsCategoryPage.PRODUCT_CARD_OBJECTS)
+        self.previous_page_link = driver.find_element(
+            LocatorsCategoryPage.PRODUCT_CARD_OBJECTS)
+        self.next_page_link = driver.find_element(
+            LocatorsCategoryPage.NEXT_PAGE_LINK)
+        self.first_page_link = driver.find_element(
+            LocatorsCategoryPage.FIRST_PAGE_LINK)
+        self.last_page_link = driver.find_element(
+            LocatorsCategoryPage.LAST_PAGE_LINK)
+        self.first_middle_pagination_link = driver.find_element(
+            LocatorsCategoryPage.FIRST_MIDDLE_PAGINATION_LINK)
+        self.second_middle_pagination_link = driver.find_element(
+            LocatorsCategoryPage.SECOND_MIDDLE_PAGINATION_LINK)
+        self.third_middle_pagination_link = driver.find_element(
+            LocatorsCategoryPage.THIRD_MIDDLE_PAGINATION_LINK)
+        self.fourth_middle_pagination_link = driver.find_element(
+            LocatorsCategoryPage.FOURTH_MIDDLE_PAGINATION_LINK)
         self.car_category_dropdown = \
             DropdownComponent(driver,
                               LocatorsCategoryPage.CAR_CATEGORY_DROPDOWN)
@@ -374,3 +392,27 @@ class CategoryPage(BasePage):
 
     def click_search_link(self):
         self.search_link.click()
+
+    def click_previous_page_link(self):
+        self.previous_page_link.click()
+
+    def click_next_page_link(self):
+        self.next_page_link.click()
+
+    def click_first_page_link(self):
+        self.first_page_link.click()
+
+    def click_last_page_link(self):
+        self.last_page_link.click(
+
+    def click_first_middle_pagination_link(self):
+        self.first_middle_pagination_link.click()
+
+    def click_second_middle_pagination_link(self):
+        self.second_middle_pagination_link.click()
+
+    def click_third_middle_pagination_link(self):
+        self.third_middle_pagination_link.click()
+
+    def click_fourth_middle_pagination_link(self):
+        self.fourth_middle_pagination_link.click()
