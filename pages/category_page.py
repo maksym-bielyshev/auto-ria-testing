@@ -403,7 +403,7 @@ class CategoryPage(BasePage):
         self.first_page_link.click()
 
     def click_last_page_link(self):
-        self.last_page_link.click(
+        self.last_page_link.click()
 
     def click_first_middle_pagination_link(self):
         self.first_middle_pagination_link.click()
