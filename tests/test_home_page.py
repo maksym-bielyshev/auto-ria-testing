@@ -3,6 +3,7 @@ from pages.home_page import HomePage
 import pytest
 from tests.conftest import get_test_data, get_test_data_dictreader
 from pages.base_page import BasePage
+from locators import LocatorsHomeFilter
 
 
 class TestHomePage(BaseTest):
@@ -59,3 +60,53 @@ class TestHomePage(BaseTest):
         self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
         assert substring in self.driver.current_url
+
+    def test_categories_dropdown_options_list_ua(self) -> None:
+        """Check if "Categories" dropdown list is equal to expected list
+        in Ukrainian.
+
+        Steps:
+            1. Change language to Ukrainian
+            2. Click on the "Categories" dropdown
+            3. Compare an actual list with expected list.
+
+        Expected result: both lists are equal.
+        """
+        expected_categories = ['Будь-який', 'Легкові', 'Мото', 'Вантажівки',
+                               'Причепи', 'Спецтехніка', 'Сільгосптехніка',
+                               'Автобуси', 'Водний транспорт',
+                               'Повітряний транспорт', 'Автобудинки']
+        BasePage(self.driver).switch_proper_language("ua")
+        categories_dropdown = self.driver.find_element(*LocatorsHomeFilter.
+                                                       CATEGORY_DROPDOWN)
+        options = [x for x in
+                   categories_dropdown.find_elements_by_tag_name("option")]
+        actual_categories = []
+        for element in options:
+            actual_categories.append(element.text)
+        assert actual_categories == expected_categories
+
+    def test_categories_dropdown_options_list_ru(self) -> None:
+        """Check if "Categories" dropdown list is equal to expected list
+        in Russian.
+
+        Steps:
+            1. Change language to Russian.
+            2. Click on the "Categories" dropdown
+            3. Compare an actual list with expected list.
+
+        Expected result: both lists are equal.
+        """
+        expected_categories = ['Любой', 'Легковые', 'Мото', 'Грузовики',
+                               'Прицепы', 'Спецтехника', 'Сельхозтехника',
+                               'Автобусы', 'Водный транспорт',
+                               'Воздушный транспорт', 'Автодома']
+        BasePage(self.driver).switch_proper_language("ru")
+        categories_dropdown = self.driver.find_element(*LocatorsHomeFilter.
+                                                       CATEGORY_DROPDOWN)
+        options = [x for x in
+                   categories_dropdown.find_elements_by_tag_name("option")]
+        actual_categories = []
+        for element in options:
+            actual_categories.append(element.text)
+        assert actual_categories == expected_categories
