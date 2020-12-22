@@ -30,11 +30,9 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        if language == "ua":
-            BasePage(self.driver).switch_to_ukrainian()
-        elif language == "ru":
-            BasePage(self.driver).switch_to_russian()
+        BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
+        self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
         assert substring in self.driver.current_url
 
@@ -54,11 +52,8 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        if language == "ua":
-            BasePage(self.driver).switch_to_ukrainian()
-        elif language == "ru":
-            BasePage(self.driver).switch_to_russian()
-        self.home_page = HomePage(self.driver)
+        BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
+        self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
         assert substring in self.driver.current_url

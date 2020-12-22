@@ -1,4 +1,5 @@
 from selenium import webdriver
+from locators import LocatorsBasePage
 
 
 class BasePage:
@@ -11,12 +12,8 @@ class BasePage:
         """
         self._driver = driver
 
-    def switch_to_ukrainian(self):
-        if "auto.ria.com/uk" not in self._driver.current_url:
-            self._driver.find_element_by_xpath(
-                "//a[@class='selectLang ml-r']").click()
-
-    def switch_to_russian(self):
-        if "auto.ria.com/uk" in self._driver.current_url:
-            self._driver.find_element_by_xpath(
-                "//a[@class='selectLang ml-l']").click()
+    def switch_proper_language(self, language):
+        if language == "ua" and "/uk/" not in self._driver.current_url:
+            self._driver.find_element(*LocatorsBasePage.UKRAINIAN_LINK).click()
+        elif language == "ru" and "/ru" not in self._driver.current_url:
+            self._driver.find_element(*LocatorsBasePage.RUSSIAN_LINK).click()
