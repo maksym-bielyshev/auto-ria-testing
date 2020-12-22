@@ -22,12 +22,10 @@ class TestHomePage(BaseTest):
     def test_categories_dropdown_transition(
             self, language, category, substring) -> None:
         """Check all the options in the "Categories" dropdown.
-
         Steps:
             1. Click on the "Categories" dropdown
             2. Select an option
             3. Click on the "Пошук" button
-
         Expected result:
             1. Link in the address bar is changed to the address of the
                corresponding category.
@@ -36,7 +34,6 @@ class TestHomePage(BaseTest):
             BasePage(self.driver).switch_to_ukrainian()
         elif language == "ru":
             BasePage(self.driver).switch_to_russian()
-        self.home_page = HomePage(self.driver)
         self.home_page.category_dropdown.choose_dropdown_option(category)
         self.home_page.click_search_button()
         assert substring in self.driver.current_url
@@ -46,13 +43,13 @@ class TestHomePage(BaseTest):
         get_test_data('category_dropdown_without_naming.csv'))
     def test_categories_dropdown_transition_without_naming(
             self, language, category, substring) -> None:
-        """Check all the options in the "Categories" dropdown.
+        """Check options in the "Categories" dropdown, which have no
+        specific naming for categories in the address.
 
         Steps:
             1. Click on the "Categories" dropdown
             2. Select an option
             3. Click on the "Пошук" button
-
         Expected result:
             1. Link in the address bar is changed to the address of the
                corresponding category.
