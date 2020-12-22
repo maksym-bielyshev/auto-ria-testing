@@ -1,5 +1,4 @@
 from _pytest.fixtures import FixtureRequest
-from selenium.webdriver.chrome.options import Options
 import pytest
 import csv
 from selenium import webdriver
@@ -12,8 +11,7 @@ def init_driver(request: FixtureRequest) -> None:
     :param request: FixtureRequest
     :return: None
     """
-    options = Options()
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome('../driver/chromedriver_win32.exe')
 
     request.cls.driver = driver
     driver.implicitly_wait(10)
