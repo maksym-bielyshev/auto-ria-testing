@@ -1,6 +1,13 @@
 from selenium.webdriver.common.by import By
 
 
+class LocatorsBasePage:
+    RUSSIAN_LINK = (
+        By.CSS_SELECTOR, "#ru")
+    UKRAINIAN_LINK = (
+        By.CSS_SELECTOR, "#ukr")
+
+
 class LocatorsHomeFilter:
     ALL_AUTOS = (
         By.XPATH, "//input[@id='allRadioType']")
