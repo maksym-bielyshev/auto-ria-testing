@@ -1,7 +1,7 @@
 from tests.base_test import BaseTest
 from pages.home_page import HomePage
 import pytest
-from tests.conftest import get_test_data
+from tests.conftest import get_test_data, get_test_data_dictreader
 from pages.base_page import BasePage
 
 
@@ -18,7 +18,7 @@ class TestHomePage(BaseTest):
 
     @pytest.mark.parametrize(
         'language, category, substring',
-        get_test_data('category_dropdown.csv'))
+        get_test_data_dictreader('category_dropdown.csv'))
     def test_categories_dropdown_transition(
             self, language, category, substring) -> None:
         """Check all the options in the "Categories" dropdown.
@@ -30,10 +30,12 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
+        import time
         BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
         self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
+        time.sleep(2)
         assert substring in self.driver.current_url
 
     @pytest.mark.parametrize(
