@@ -1,11 +1,18 @@
-Будь-який;https://auto.ria.com/uk/search/?indexName=auto,order_auto,newauto_search
-Легкові;https://auto.ria.com/uk/legkovie/?page=1
-Мото;https://auto.ria.com/uk/moto/?page=1
-Вантажівки;https://auto.ria.com/uk/truck/?page=1
-Причепи;https://auto.ria.com/uk/trailer/?page=1
-Спецтехніка;https://auto.ria.com/uk/spectehnika/?page=1
-Сільгосптехніка;https://auto.ria.com/uk/search/?categories.main.id=10&indexName=auto,order_auto,newauto_search
-Автобуси;https://auto.ria.com/uk/bus/?page=1
-Водний транспорт;https://auto.ria.com/uk/vodnyj-transport/?page=1
-Повітряний транспорт;https://auto.ria.com/uk/air-transport/?page=1
-Автобудинки;https://auto.ria.com/uk/autohouse/?page=1
+ua;Легкові;/legkovie
+ua;Мото;/moto
+ua;Вантажівки;/truck
+ua;Причепи;/trailer
+ua;Спецтехніка;/spectehnika
+ua;Автобуси;/bus
+ua;Водний транспорт;/vodnyj-transport
+ua;Повітряний транспорт;/air-transport
+ua;Автобудинки;/autohouse
+ru;Легковые;/legkovie
+ru;Мото;/moto
+ru;Грузовики;/truck
+ru;Прицепі;/trailer
+ru;Спецтехника;/spectehnika
+ru;Автобусы;/bus
+ru;Водный транспорт;/vodnyj-transport
+ru;Воздушный транспорт;/air-transport
+ru;Автодома;/autohouse

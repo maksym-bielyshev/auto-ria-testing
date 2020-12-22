@@ -1,9 +1,8 @@
 from _pytest.fixtures import FixtureRequest
-from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 import pytest
-from selenium import webdriver
 import csv
+from selenium import webdriver
 
 
 @pytest.fixture(scope="function")
@@ -14,9 +13,7 @@ def init_driver(request: FixtureRequest) -> None:
     :return: None
     """
     options = Options()
-    driver = webdriver.Remote(
-        command_executor='http://127.0.0.1:4444/wd/hub',
-        desired_capabilities=DesiredCapabilities.CHROME)
+    driver = webdriver.Chrome()
 
     request.cls.driver = driver
     driver.implicitly_wait(10)
@@ -26,12 +23,13 @@ def init_driver(request: FixtureRequest) -> None:
 
 
 def get_test_data(file_name: str) -> list:
-    """Converts file with test data to tuples list to use it in parameterized tests.
+    """Converts file with test data to tuples list.
     :param file_name: string
-    :return: test_data_list consists of tuples, where each tuple is one file row.
+    :return: test_data_list consists of tuples, each tuple is one file row.
     """
     with open(f'../tests_data/{file_name}', 'r', encoding="utf8") as file:
-        reader = csv.reader(file, quoting=csv.QUOTE_ALL, skipinitialspace=True, delimiter='\t')
+        reader = csv.reader(file, quoting=csv.QUOTE_ALL,
+                            skipinitialspace=True, delimiter='\t')
         test_data_list = []
         for row in reader:
             test_data_list.append(tuple(row[0].strip('][').split(';')))

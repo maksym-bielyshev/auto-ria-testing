@@ -29,4 +29,4 @@ class LocatorsHomeFilter:
     PRICE_TO = (
         By.XPATH, "//input[@id='priceTo']")
     SEARCH_BUTTON = (
-        By.XPATH, "//button[@type='submit']//span[contains(text(),'Пошук')]")
+        By.XPATH, "//button[@type='submit']")

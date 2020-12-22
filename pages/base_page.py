@@ -1,10 +1,10 @@
-from selenium.webdriver import Remote
+from selenium import webdriver
 
 
 class BasePage:
     """Base page class."""
 
-    def __init__(self, driver: Remote):
+    def __init__(self, driver):
         """Initialize main class.
 
         :param driver: Remote.
