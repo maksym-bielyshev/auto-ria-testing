@@ -44,6 +44,3 @@ def get_test_data_dictreader(file):
         data = (row['language'], row['data'], row['expected_result'])
         test_data_list.append(data)
     return test_data_list
-
-
-print(get_test_data_dictreader('category_dropdown.csv'))
