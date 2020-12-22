@@ -95,5 +95,4 @@ class ProductPage(BasePage):
             LocatorsProductPage.OTHER_TEXT)
 
     def get_phone_number(self):
-        self.show_phone_link.click()
         return self.seller_phone_text
