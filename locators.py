@@ -1,6 +1,13 @@
 from selenium.webdriver.common.by import By
 
 
+class LocatorsBasePage:
+    RUSSIAN_LINK = (
+        By.XPATH, "//a[@class='selectLang ml-l']")
+    UKRAINIAN_LINK = (
+        By.XPATH, "//a[@class='selectLang ml-r']")
+
+
 class LocatorsHomeFilter:
     ALL_AUTOS = (
         By.XPATH, "//input[@id='allRadioType']")
@@ -29,4 +36,4 @@ class LocatorsHomeFilter:
     PRICE_TO = (
         By.XPATH, "//input[@id='priceTo']")
     SEARCH_BUTTON = (
-        By.XPATH, "//button[@type='submit']//span[contains(text(),'Пошук')]")
+        By.CSS_SELECTOR, "button[type='submit']")
