@@ -402,8 +402,9 @@ class CategoryPage(BasePage):
 
     @property
     def not_on_the_move_dropdown(self):
-        return DropdownComponent(self._driver,
-                                 *LocatorsCategoryPage.NOT_ON_THE_MOVE_DROPDOWN)
+        return DropdownComponent(
+            self._driver,
+            *LocatorsCategoryPage.NOT_ON_THE_MOVE_DROPDOWN)
 
     @property
     def sort_dropdown(self):
