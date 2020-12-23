@@ -75,7 +75,7 @@ class TestHomePage(BaseTest):
         BasePage(self.driver).switch_proper_language(language)
         categories_dropdown = self.driver.find_element(*LocatorsHomeFilter.
                                                        CATEGORY_DROPDOWN)
-        options = [x for x in
-                   categories_dropdown.find_elements_by_tag_name("option")]
-        for element in options:
-            assert element.text in expected_categories
+        categories = [x for x in
+                      categories_dropdown.find_elements_by_tag_name("option")]
+        for category in categories:
+            assert category.text in expected_categories
