@@ -38,7 +38,6 @@ def get_test_data_dictreader(file):
     fieldnames = ('language', 'data', 'expected_result')
     csv_file = open(f'../tests_data/{file}', encoding='utf8')
     input_file = csv.DictReader(csv_file, delimiter=';', fieldnames=fieldnames)
-    print(input_file)
     test_data_list = []
     for row in input_file:
         data = (row['language'], row['data'], row['expected_result'])
