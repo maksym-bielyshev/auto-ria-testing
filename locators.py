@@ -32,6 +32,45 @@ class LocatorsHomeFilter:
         By.XPATH, "//button[@type='submit']//span[contains(text(),'Пошук')]")
 
 
+class LocatorsProductPage:
+    SELLER_NAME_TEXT = (
+        By.CLASS_NAME, "seller_info_name bold")
+    SHOW_PHONE_LINK = (
+        By.CLASS_NAME, "size14 phone_show_link link-dotted mhide")
+    SELLER_PHONE_TEXT = (
+        By.XPATH, "//section[@id='userInfoBlock']//"
+                  "div[contains(@class,'phones_item')]//"
+                  "span['data-phone-number']")
+    AUTO_TITLE = (
+        By.CLASS_NAME, "auto-content_title")
+    MILE_AGE_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[2]")
+    ENGINE_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[3]")
+    GEARBOX_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[5]")
+    WHEEL_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[6]")
+    COLOR_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[7]")
+    FULL_DESCRIPTION_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[8]")
+    LACQUER_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[9]")
+    TECHNICAL_CONDITION_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[10]")
+    CONDITION_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[11]")
+    SAFETY_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[12]")
+    COMFORT_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[13]")
+    MEDIA_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[14]")
+    OTHER_TEXT = (
+        By.XPATH, "//dl[@class='unstyle']//dd[15]")
+
+
 class LocatorsCategoryPage:
     ALL_AUTOS_BUTTON = (
         By.XPATH,
