@@ -66,11 +66,11 @@ class TestHomePage(BaseTest):
         in Ukrainian.
 
         Steps:
-            1. Change language to Ukrainian
+            1. Change language to a proper language
             2. Click on the "Categories" dropdown
-            3. Compare an actual list with expected list.
+            3. Check if an option in the expected list.
 
-        Expected result: both lists are equal.
+        Expected result: all options are in the expected list.
         """
         BasePage(self.driver).switch_proper_language(language)
         categories_dropdown = self.driver.find_element(*LocatorsHomeFilter.
