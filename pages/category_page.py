@@ -347,13 +347,13 @@ class CategoryPage(BasePage):
 
     @property
     def product_cards(self):
-        return self._driver.find_element(
-            *LocatorsCategoryPage.PRODUCT_CARD_OBJECTS)
+        return self._driver.find_elements(
+            *LocatorsCategoryPage.PRODUCT_CARD_OBJECT)
 
     @property
     def previous_page_link(self):
         return self._driver.find_element(
-            *LocatorsCategoryPage.PRODUCT_CARD_OBJECTS)
+            *LocatorsCategoryPage.PRODUCT_CARD_OBJECT)
 
     @property
     def next_page_link(self):
