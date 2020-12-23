@@ -31,12 +31,9 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        import time
         BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
-        self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
-        time.sleep(2)
         assert substring in self.driver.current_url
 
     @pytest.mark.parametrize(
@@ -57,11 +54,14 @@ class TestHomePage(BaseTest):
         """
         BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
-        self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
         assert substring in self.driver.current_url
 
-    def test_categories_dropdown_options_list_ua(self) -> None:
+    @pytest.mark.parametrize(
+        'language, expected_categories',
+        get_test_data('category_dropdown_list.csv'))
+    def test_categories_dropdown_options_list_ua(self, language,
+                                                 expected_categories) -> None:
         """Check if "Categories" dropdown list is equal to expected list
         in Ukrainian.
 
@@ -72,41 +72,10 @@ class TestHomePage(BaseTest):
 
         Expected result: both lists are equal.
         """
-        expected_categories = ['Будь-який', 'Легкові', 'Мото', 'Вантажівки',
-                               'Причепи', 'Спецтехніка', 'Сільгосптехніка',
-                               'Автобуси', 'Водний транспорт',
-                               'Повітряний транспорт', 'Автобудинки']
-        BasePage(self.driver).switch_proper_language("ua")
+        BasePage(self.driver).switch_proper_language(language)
         categories_dropdown = self.driver.find_element(*LocatorsHomeFilter.
                                                        CATEGORY_DROPDOWN)
         options = [x for x in
                    categories_dropdown.find_elements_by_tag_name("option")]
-        actual_categories = []
         for element in options:
-            actual_categories.append(element.text)
-        assert actual_categories == expected_categories
-
-    def test_categories_dropdown_options_list_ru(self) -> None:
-        """Check if "Categories" dropdown list is equal to expected list
-        in Russian.
-
-        Steps:
-            1. Change language to Russian.
-            2. Click on the "Categories" dropdown
-            3. Compare an actual list with expected list.
-
-        Expected result: both lists are equal.
-        """
-        expected_categories = ['Любой', 'Легковые', 'Мото', 'Грузовики',
-                               'Прицепы', 'Спецтехника', 'Сельхозтехника',
-                               'Автобусы', 'Водный транспорт',
-                               'Воздушный транспорт', 'Автодома']
-        BasePage(self.driver).switch_proper_language("ru")
-        categories_dropdown = self.driver.find_element(*LocatorsHomeFilter.
-                                                       CATEGORY_DROPDOWN)
-        options = [x for x in
-                   categories_dropdown.find_elements_by_tag_name("option")]
-        actual_categories = []
-        for element in options:
-            actual_categories.append(element.text)
-        assert actual_categories == expected_categories
+            assert element.text in expected_categories
