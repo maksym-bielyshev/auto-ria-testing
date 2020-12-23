@@ -32,7 +32,6 @@ class TestHomePage(BaseTest):
         """
         BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
-        # self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
         assert substring in self.driver.current_url
 
