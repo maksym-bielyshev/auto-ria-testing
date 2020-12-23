@@ -30,12 +30,10 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        import time
         BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
-        self.home_page = HomePage(self.driver)
+        # self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
-        time.sleep(2)
         assert substring in self.driver.current_url
 
     @pytest.mark.parametrize(
@@ -56,6 +54,5 @@ class TestHomePage(BaseTest):
         """
         BasePage(self.driver).switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
-        self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
         assert substring in self.driver.current_url
