@@ -1,8 +1,11 @@
+import os
+
+print(os.getcwd())
+
 from tests.base_test import BaseTest
 from pages.home_page import HomePage
 import pytest
 from tests.conftest import get_test_data, get_test_data_dictreader
-from pages.base_page import BasePage
 
 
 class TestHomePage(BaseTest):
@@ -30,9 +33,11 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        BasePage(self.driver).switch_proper_language(language)
+        self.home_page.switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
+        self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
+        self.driver.execute_script("return document.readyState")
         assert substring in self.driver.current_url
 
     @pytest.mark.parametrize(
@@ -51,7 +56,9 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        BasePage(self.driver).switch_proper_language(language)
+        self.home_page.switch_proper_language(language)
         self.home_page.category_dropdown.choose_dropdown_option(category)
+        self.home_page = HomePage(self.driver)
         self.home_page.click_search_button()
+        self.driver.execute_script("return document.readyState")
         assert substring in self.driver.current_url

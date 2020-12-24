@@ -15,8 +15,8 @@ def init_driver(request: FixtureRequest) -> None:
 
     request.cls.driver = driver
     driver.implicitly_wait(10)
-    driver.maximize_window()
-
+    driver.set_page_load_timeout(5)
+    driver.minimize_window()
     yield driver
 
 
