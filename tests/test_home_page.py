@@ -3,7 +3,6 @@ from pages.home_page import HomePage
 import pytest
 from tests.conftest import get_test_data, get_test_data_dictreader
 from pages.base_page import BasePage
-from locators import LocatorsHomeFilter
 
 
 class TestHomePage(BaseTest):
@@ -72,10 +71,6 @@ class TestHomePage(BaseTest):
 
         Expected result: all options are in the expected list.
         """
-        BasePage(self.driver).switch_proper_language(language)
-        categories_dropdown = self.driver.find_element(*LocatorsHomeFilter.
-                                                       CATEGORY_DROPDOWN)
-        categories = [x for x in
-                      categories_dropdown.find_elements_by_tag_name("option")]
-        for category in categories:
+        self.home_page.switch_proper_language(language)
+        for category in self.home_page.get_all_categories():
             assert category.text in expected_categories
