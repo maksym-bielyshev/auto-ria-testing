@@ -660,3 +660,16 @@ class CategoryPage(BasePage):
 
     def click_fourth_middle_pagination_link(self):
         self.fourth_middle_pagination_link.click()
+
+    def get_prices(self):
+        prices_str = []
+        for card in self.product_cards:
+            price = card.find_element_by_css_selector(
+                ".bold.green.size22").text
+            price_split = price.split(' ')
+            price_join = ''.join(price_split)
+            prices_str.append(price_join)
+        prices_int = []
+        for price in prices_str:
+            prices_int.append(int(price))
+        return prices_int

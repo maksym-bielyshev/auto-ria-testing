@@ -23,19 +23,11 @@ class TestCategoryPage(BaseTest):
 
         Expected result: all prices in a valid range
         """
-        self.category_page.fill_price_from_field("10000")
-        self.category_page.fill_price_to_field("40000")
+        PRICE_FROM = 10000
+        PRICE_TO = 40000
+        self.category_page.fill_price_from_field(PRICE_FROM)
+        self.category_page.fill_price_to_field(PRICE_TO)
         self.category_page.click_search_link()
-        cards = self.category_page.product_cards
-        prices_str = []
-        for card in cards:
-            price = card.find_element_by_css_selector(
-                ".bold.green.size22").text
-            price_split = price.split(' ')
-            price_join = ''.join(price_split)
-            prices_str.append(price_join)
-        prices_int = []
-        for price in prices_str:
-            prices_int.append(int(price))
-        for price in prices_int:
-            assert 99999 > price < 40001
+        prices = self.category_page.get_prices()
+        for price in prices:
+            assert PRICE_FROM <= price <= PRICE_TO
