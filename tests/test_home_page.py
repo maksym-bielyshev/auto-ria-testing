@@ -1,7 +1,3 @@
-import os
-
-print(os.getcwd())
-
 from tests.base_test import BaseTest
 from pages.home_page import HomePage
 import pytest
