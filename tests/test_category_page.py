@@ -1,5 +1,9 @@
+import pytest
+
 from pages.category_page import CategoryPage
+from pages.home_page import HomePage
 from tests.base_test import BaseTest
+from tests.conftest import get_test_data_dictreader
 
 
 class TestCategoryPage(BaseTest):
@@ -32,6 +36,34 @@ class TestCategoryPage(BaseTest):
         while True:
             for price in prices:
                 assert PRICE_FROM <= price <= PRICE_TO
+            try:
+                self.category_page.click_next_page_link()
+            except Exception:
+                break
+
+    @pytest.mark.parametrize(
+        'language, year, _',
+        get_test_data_dictreader('years_filter.csv'))
+    def test_categories_dropdown_transition_without_naming(
+            self, language, year, _) -> None:
+        """Check if a specific year presents in product title.
+
+        Steps:
+            1. Open "Category" page
+            2. Choose a year
+            3. Click on the search button
+
+        Expected result:
+            1. Year presents in all titles
+        """
+        self.category_page.switch_proper_language(language)
+        self.category_page.year_from_dropdown.choose_dropdown_option(year)
+        self.category_page.year_to_dropdown.choose_dropdown_option(year)
+        self.category_page.click_search_link()
+        titles = self.category_page.get_titles()
+        while True:
+            for title in titles:
+                assert year in title
             try:
                 self.category_page.click_next_page_link()
             except Exception:

@@ -312,3 +312,7 @@ class LocatorsCategoryPage:
     PRODUCT_PRICE = (
         By.CSS_SELECTOR,
         ".bold.green.size22")
+    PRODUCT_TITLE = (
+        By.XPATH,
+        "//div[@class='item ticket-title']//a"
+    )

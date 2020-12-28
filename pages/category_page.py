@@ -424,12 +424,12 @@ class CategoryPage(BasePage):
     @property
     def year_from_dropdown(self):
         return DropdownComponent(self._driver,
-                                 *LocatorsCategoryPage.YEAR_FROM_DROPDOWN)
+                                 LocatorsCategoryPage.YEAR_FROM_DROPDOWN)
 
     @property
     def year_to_dropdown(self):
         return DropdownComponent(self._driver,
-                                 *LocatorsCategoryPage.YEAR_TO_DROPDOWN)
+                                 LocatorsCategoryPage.YEAR_TO_DROPDOWN)
 
     @property
     def currency_dropdown(self):
@@ -667,3 +667,10 @@ class CategoryPage(BasePage):
             price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
             prices.append(int(''.join(price.split(' '))))
         return prices
+
+    def get_titles(self):
+        titles = []
+        for card in self.product_cards:
+            title = card.find_element(*LocatorsCategoryPage.PRODUCT_TITLE).text
+            titles.append(title)
+        return titles
