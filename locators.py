@@ -290,7 +290,7 @@ class LocatorsCategoryPage:
         "//span[@class='page-item prev']//a")
     NEXT_PAGE_LINK = (
         By.XPATH,
-        "//a[@class='page-link js-next']")
+        "//span[@class='page-item next text-r']//a")
     FIRST_PAGE_LINK = (
         By.XPATH,
         "//div[@id='searchPagination']//span[2]//a")
@@ -313,6 +313,6 @@ class LocatorsCategoryPage:
         By.CSS_SELECTOR,
         ".bold.green.size22")
     PRODUCT_TITLE = (
-        By.XPATH,
-        "//div[@class='item ticket-title']//a"
+        By.CLASS_NAME,
+        "address"
     )

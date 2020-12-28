@@ -1,3 +1,7 @@
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.support.wait import WebDriverWait
+
 from pages.base_page import BasePage
 from selenium.webdriver import Remote
 from locators import LocatorsCategoryPage
@@ -357,8 +361,9 @@ class CategoryPage(BasePage):
 
     @property
     def next_page_link(self):
-        return self._driver.find_element(
-            *LocatorsCategoryPage.NEXT_PAGE_LINK)
+        return WebDriverWait(self._driver, 20).until(EC.element_to_be_clickable(LocatorsCategoryPage.NEXT_PAGE_LINK))
+
+        # return self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
 
     @property
     def first_page_link(self):
@@ -665,7 +670,10 @@ class CategoryPage(BasePage):
         prices = []
         for card in self.product_cards:
             price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
-            prices.append(int(''.join(price.split(' '))))
+            try:
+                prices.append(int(''.join(price.split(' '))))
+            except ValueError:
+                break
         return prices
 
     def get_titles(self):
@@ -674,3 +682,17 @@ class CategoryPage(BasePage):
             title = card.find_element(*LocatorsCategoryPage.PRODUCT_TITLE).text
             titles.append(title)
         return titles
+
+    def right_link(self):
+        link = self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
+        attribute = link.get_attribute("class")
+        return attribute
+
+    def if_disabled_navigation_link(self, navigation_link):
+        if navigation_link == "previous":
+            link = self._driver.find_element(*LocatorsCategoryPage.PREVIOUS_PAGE_LINK)
+            attribute = link.get_attribute("class")
+        if navigation_link == "next":
+            link = self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
+            attribute = link.get_attribute("class")
+        return "disabled" in attribute

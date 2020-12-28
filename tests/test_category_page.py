@@ -43,27 +43,32 @@ class TestCategoryPage(BaseTest):
     @pytest.mark.parametrize(
         'language, year, _',
         get_test_data_dictreader('years_filter.csv'))
-    def test_categories_dropdown_transition_without_naming(
-            self, language, year, _) -> None:
+    def test_year_in_title(self, language, year, _) -> None:
         """Check if a specific year presents in product title.
 
         Steps:
-            1. Open "Category" page
-            2. Choose a year
+            1. Choose any year "from"
+            2. Choose the same year "to"
             3. Click on the search button
 
         Expected result:
-            1. Year presents in all titles
+            1. Selected year presents in all titles
         """
+        import time
         self.category_page.switch_proper_language(language)
-        self.category_page.year_from_dropdown.choose_dropdown_option(year)
         self.category_page.year_to_dropdown.choose_dropdown_option(year)
+        self.category_page.year_from_dropdown.choose_dropdown_option(year)
         self.category_page.click_search_link()
-        titles = self.category_page.get_titles()
-        while True:
+
+        def assert_year_in_titles():
+            titles = self.category_page.get_titles()
             for title in titles:
                 assert year in title
-            try:
-                self.category_page.click_next_page_link()
-            except Exception:
-                break
+            self.driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight);")
+
+        assert_year_in_titles()
+
+        while not self.category_page.if_disabled_navigation_link("next"):
+            self.category_page.click_next_page_link()
+            assert_year_in_titles()
