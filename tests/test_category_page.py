@@ -1,7 +1,6 @@
 import pytest
 
 from pages.category_page import CategoryPage
-from pages.home_page import HomePage
 from tests.base_test import BaseTest
 from tests.conftest import get_test_data_dictreader
 
