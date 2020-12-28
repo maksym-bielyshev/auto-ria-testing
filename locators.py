@@ -290,7 +290,7 @@ class LocatorsCategoryPage:
         "//span[@class='page-item prev']//a")
     NEXT_PAGE_LINK = (
         By.XPATH,
-        "//span[@class='page-item next text-r']")
+        "//a[@class='page-link js-next']")
     FIRST_PAGE_LINK = (
         By.XPATH,
         "//div[@id='searchPagination']//span[2]//a")
@@ -309,3 +309,6 @@ class LocatorsCategoryPage:
     FOURTH_MIDDLE_PAGINATION_LINK = (
         By.XPATH,
         "//div[@id='searchPagination']//span[7]//a")
+    PRODUCT_PRICE = (
+        By.CSS_SELECTOR,
+        ".bold.green.size22")
