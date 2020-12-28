@@ -361,9 +361,8 @@ class CategoryPage(BasePage):
 
     @property
     def next_page_link(self):
-        return WebDriverWait(self._driver, 20).until(EC.element_to_be_clickable(LocatorsCategoryPage.NEXT_PAGE_LINK))
-
-        # return self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
+        return WebDriverWait(self._driver, 20).until(
+            EC.element_to_be_clickable(LocatorsCategoryPage.NEXT_PAGE_LINK))
 
     @property
     def first_page_link(self):
@@ -690,10 +689,12 @@ class CategoryPage(BasePage):
 
     def if_disabled_navigation_link(self, navigation_link):
         if navigation_link == "previous":
-            link = self._driver.find_element(*LocatorsCategoryPage.PREVIOUS_PAGE_LINK)
+            link = self._driver.find_element(
+                *LocatorsCategoryPage.PREVIOUS_PAGE_LINK)
             attribute = link.get_attribute("class")
         if navigation_link == "next":
-            link = self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
+            link = self._driver.find_element(
+                *LocatorsCategoryPage.NEXT_PAGE_LINK)
             attribute = link.get_attribute("class")
         return "disabled" in attribute
 
