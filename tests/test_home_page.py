@@ -57,10 +57,11 @@ class TestHomePage(BaseTest):
         assert substring in self.driver.current_url
 
     @pytest.mark.parametrize(
-        'language, expected_categories',
-        get_test_data('category_dropdown_list.csv'))
-    def test_categories_dropdown_options_list_ua(self, language,
-                                                 expected_categories) -> None:
+        'language, expected_categories, _',
+        get_test_data_dictreader('category_dropdown.csv',
+                                 'category_dropdown_without_naming.csv'))
+    def test_categories_dropdown_options_list(self, language,
+                                              expected_categories, _) -> None:
         """Check if "Categories" dropdown list is equal to expected list
         in Ukrainian.
 
@@ -72,5 +73,21 @@ class TestHomePage(BaseTest):
         Expected result: all options are in the expected list.
         """
         self.home_page.switch_proper_language(language)
+        actual_categories = []
         for category in self.home_page.get_all_categories():
-            assert category.text in expected_categories
+            actual_categories.append(category.text)
+        assert expected_categories in actual_categories
+
+    @pytest.mark.parametrize('language, expected_categories, _',
+                             get_test_data_dictreader(
+                                 'category_dropdown.csv',
+                                 'category_dropdown_without_naming.csv'))
+    def test_no_doubles_dropdown_categories(self, language,
+                                            expected_categories, _):
+        actual_categories = []
+        self.home_page.switch_proper_language(language)
+        for category in self.home_page.get_all_categories():
+            actual_categories.append(category.text)
+        for category in actual_categories:
+            actual_categories.remove(category)
+            assert category not in actual_categories
