@@ -31,14 +31,16 @@ class TestCategoryPage(BaseTest):
         self.category_page.fill_price_from_field(PRICE_FROM)
         self.category_page.fill_price_to_field(PRICE_TO)
         self.category_page.click_search_link()
-        prices = self.category_page.get_prices()
-        while True:
-            for price in prices:
-                assert PRICE_FROM <= price <= PRICE_TO
-            try:
-                self.category_page.click_next_page_link()
-            except Exception:
-                break
+
+        assert self.category_page.if_price_in_proper_range(PRICE_FROM,
+                                                           PRICE_TO)
+
+        while not self.category_page.if_disabled_navigation_link("next"):
+            self.driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight);")
+            self.category_page.click_next_page_link()
+            assert self.category_page.if_price_in_proper_range(PRICE_FROM,
+                                                               PRICE_TO)
 
     @pytest.mark.parametrize(
         'language, year, _',
@@ -54,21 +56,15 @@ class TestCategoryPage(BaseTest):
         Expected result:
             1. Selected year presents in all titles
         """
-        import time
         self.category_page.switch_proper_language(language)
         self.category_page.year_to_dropdown.choose_dropdown_option(year)
         self.category_page.year_from_dropdown.choose_dropdown_option(year)
         self.category_page.click_search_link()
 
-        def assert_year_in_titles():
-            titles = self.category_page.get_titles()
-            for title in titles:
-                assert year in title
-            self.driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
-
-        assert_year_in_titles()
+        assert self.category_page.if_proper_year_in_titles(year)
+        self.driver.execute_script(
+            "window.scrollTo(0, document.body.scrollHeight);")
 
         while not self.category_page.if_disabled_navigation_link("next"):
             self.category_page.click_next_page_link()
-            assert_year_in_titles()
+            assert self.category_page.if_proper_year_in_titles(year)

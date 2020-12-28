@@ -696,3 +696,11 @@ class CategoryPage(BasePage):
             link = self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
             attribute = link.get_attribute("class")
         return "disabled" in attribute
+
+    def if_proper_year_in_titles(self, year):
+        for title in self.get_titles():
+            return year in title
+
+    def if_price_in_proper_range(self, price_from, price_to):
+        for price in self.get_prices():
+            return price_from <= price <= price_to
