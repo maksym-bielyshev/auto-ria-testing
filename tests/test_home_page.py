@@ -1,25 +1,15 @@
-from tests.base_test import BaseTest
-from pages.home_page import HomePage
 import pytest
-from tests.conftest import get_test_data, get_test_data_dictreader
+from tests.conftest import get_test_data_dictreader
 
 
-class TestHomePage(BaseTest):
+class TestHomePage:
     """Class for the 'Home' page of 'AUTO.RIA'"""
-
-    def setup(self) -> None:
-        """Setup for the each test.
-
-        :return: None
-        """
-        self.driver.get("https://auto.ria.com/uk/")
-        self.home_page = HomePage(self.driver)
 
     @pytest.mark.parametrize(
         'language, category, substring',
         get_test_data_dictreader('category_dropdown.csv'))
     def test_categories_dropdown_transition(
-            self, language, category, substring) -> None:
+            self, open_home_page, language, category, substring) -> None:
         """Check the options in the "Categories" dropdown where each option has
         a specific naming for categories in the address.
 
@@ -32,18 +22,20 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        self.home_page.switch_proper_language(language)
-        self.home_page.category_dropdown.choose_dropdown_option(category)
-        self.home_page = HomePage(self.driver)
-        self.home_page.click_search_button()
-        self.driver.execute_script("return document.readyState")
-        assert substring in self.driver.current_url
+        home_page = open_home_page
+        home_page.switch_proper_language(language)
+        home_page.category_dropdown.choose_dropdown_option(category)
+        home_page.click_search_button()
+        home_page._driver.execute_script("return document.readyState")
+        import time
+        time.sleep(5)
+        assert substring in home_page._driver.current_url
 
     @pytest.mark.parametrize(
         'language, category, substring',
-        get_test_data('category_dropdown_without_naming.csv'))
+        get_test_data_dictreader('category_dropdown_without_naming.csv'))
     def test_categories_dropdown_transition_without_naming(
-            self, language, category, substring) -> None:
+            self, open_home_page, language, category, substring) -> None:
         """Check the options in the "Categories" dropdown where each option has
         no specific naming for categories in the address.
 
@@ -56,9 +48,11 @@ class TestHomePage(BaseTest):
             1. Link in the address bar is changed to the address of the
                corresponding category.
         """
-        self.home_page.switch_proper_language(language)
-        self.home_page.category_dropdown.choose_dropdown_option(category)
-        self.home_page = HomePage(self.driver)
-        self.home_page.click_search_button()
-        self.driver.execute_script("return document.readyState")
-        assert substring in self.driver.current_url
+        home_page = open_home_page
+        home_page.switch_proper_language(language)
+        home_page.category_dropdown.choose_dropdown_option(category)
+        home_page.click_search_button()
+        home_page._driver.execute_script("return document.readyState")
+        import time
+        time.sleep(5)
+        assert substring in home_page._driver.current_url
