@@ -55,7 +55,7 @@ class TestHomePage:
         'language, expected_categories, _',
         get_test_data_dictreader('category_dropdown.csv',
                                  'category_dropdown_without_naming.csv'))
-    def test_categories_dropdown_options_list(self, language,
+    def test_categories_dropdown_options_list(self, open_home_page, language,
                                               expected_categories, _) -> None:
         """Check that "Categories" dropdown list is equal to expected list.
 
@@ -66,16 +66,17 @@ class TestHomePage:
 
         Expected result: all options are in the expected list.
         """
-        self.home_page.switch_proper_language(language)
+        home_page = open_home_page
+        home_page.switch_proper_language(language)
         actual_categories = [c.text for c in
-                             self.home_page.get_all_categories()]
+                             home_page.get_all_categories()]
         assert expected_categories in actual_categories
 
     @pytest.mark.parametrize('language, _, __',
                              get_test_data_dictreader('languages.csv'))
-    def test_no_doubles_dropdown_categories(self, language, _, __):
-        print(language)
-        self.home_page.switch_proper_language(language)
-        actual_categories = [c.text for c in
-                             self.home_page.get_all_categories()]
+    def test_no_doubles_dropdown_categories(self, open_home_page, language, _,
+                                            __):
+        home_page = open_home_page
+        home_page.switch_proper_language(language)
+        actual_categories = [c.text for c in home_page.get_all_categories()]
         assert len(set(actual_categories)) == len(actual_categories)
