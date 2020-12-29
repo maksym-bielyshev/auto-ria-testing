@@ -10,34 +10,74 @@ class HomePage(BasePage):
     def __init__(self, driver: Remote):
         super().__init__(driver)
 
-        self.all_autos = driver.find_element(
+    @property
+    def all_autos(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.ALL_AUTOS)
-        self.used_autos = driver.find_element(
+
+    @property
+    def used_autos(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.USED_AUTOS)
-        self.new_autos = driver.find_element(
-            *LocatorsHomeFilter.NEW_AUTOS)
-        self.autos_for_delivery = driver.find_element(
+
+    @property
+    def new_autos(self):
+        return self._driver.find_element(
+            LocatorsHomeFilter.NEW_AUTOS)
+
+    @property
+    def autos_for_delivery(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.AUTOS_FOR_DELIVERY)
-        self.checked_vin = driver.find_element(
+
+    @property
+    def checked_vin(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.CHECKED_VIN)
-        self.category_dropdown = DropdownComponent(
-            driver, LocatorsHomeFilter.CATEGORY_DROPDOWN)
-        self.brand_dropdown = driver.find_element(
+
+    @property
+    def category_dropdown(self):
+        return DropdownComponent(
+            self._driver, LocatorsHomeFilter.CATEGORY_DROPDOWN)
+
+    @property
+    def brand_dropdown(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.BRAND_DROPDOWN)
-        self.model_dropdown = driver.find_element(
+
+    @property
+    def model_dropdown(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.MODEL_DROPDOWN)
-        self.region_dropdown = driver.find_element(
+
+    @property
+    def region_dropdown(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.REGION_DROPDOWN)
-        self.year_from_dropdown = DropdownComponent(
-            driver, LocatorsHomeFilter.YEAR_FROM_DROPDOWN)
-        self.year_to_dropdown = DropdownComponent(
-            driver, LocatorsHomeFilter.YEAR_TO_DROPDOWN)
-        self.price_from = driver.find_element(
+
+    @property
+    def year_from_dropdown(self):
+        return DropdownComponent(
+            self._driver, LocatorsHomeFilter.YEAR_FROM_DROPDOWN)
+
+    @property
+    def year_to_dropdown(self):
+        return DropdownComponent(
+            self._driver, LocatorsHomeFilter.YEAR_TO_DROPDOWN)
+
+    @property
+    def price_from(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.PRICE_FROM)
-        self.price_to = driver.find_element(
+
+    @property
+    def price_to(self):
+        return self._driver.find_element(
             *LocatorsHomeFilter.PRICE_TO)
-        self.search_button = driver.find_element(
-            *LocatorsHomeFilter.SEARCH_BUTTON)
+
+    @property
+    def search_button(self):
+        return self._driver.find_element(*LocatorsHomeFilter.SEARCH_BUTTON)
 
     def click_all_autos(self):
         self.all_autos.click()
@@ -54,20 +94,23 @@ class HomePage(BasePage):
     def click_checked_vin(self):
         self.checked_vin.click()
 
-    def choose_brand(self, input: str):
-        self.brand_dropdown.send_keys(input)
+    def choose_brand(self, data: str):
+        self.brand_dropdown.send_keys(data)
 
-    def choose_model(self, input: str):
-        self.model_dropdown.send_keys(input)
+    def choose_model(self, data: str):
+        self.model_dropdown.send_keys(data)
 
-    def choose_region(self, input: str):
-        self.region_dropdown.send_keys(input)
+    def choose_region(self, data: str):
+        self.region_dropdown.send_keys(data)
 
-    def set_price_from(self, input: str):
-        self.price_from.send_keys(input)
+    def set_price_from(self, data: str):
+        self.price_from.send_keys(data)
 
-    def set_price_to(self, input: str):
-        self.price_to.send_keys(input)
+    def set_price_to(self, data: str):
+        self.price_to.send_keys(data)
 
     def click_search_button(self):
+        self._driver.execute_script("return document.readyState")
+        import time
+        time.sleep(5)
         self.search_button.click()
