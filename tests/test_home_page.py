@@ -62,32 +62,25 @@ class TestHomePage(BaseTest):
                                  'category_dropdown_without_naming.csv'))
     def test_categories_dropdown_options_list(self, language,
                                               expected_categories, _) -> None:
-        """Check if "Categories" dropdown list is equal to expected list
-        in Ukrainian.
+        """Check that "Categories" dropdown list is equal to expected list.
 
         Steps:
             1. Change language to a proper language
             2. Click on the "Categories" dropdown
-            3. Check if an option in the expected list.
+            3. Check an option is in the expected list.
 
         Expected result: all options are in the expected list.
         """
         self.home_page.switch_proper_language(language)
-        actual_categories = []
-        for category in self.home_page.get_all_categories():
-            actual_categories.append(category.text)
+        actual_categories = [c.text for c in
+                             self.home_page.get_all_categories()]
         assert expected_categories in actual_categories
 
-    @pytest.mark.parametrize('language, expected_categories, _',
-                             get_test_data_dictreader(
-                                 'category_dropdown.csv',
-                                 'category_dropdown_without_naming.csv'))
-    def test_no_doubles_dropdown_categories(self, language,
-                                            expected_categories, _):
-        actual_categories = []
+    @pytest.mark.parametrize('language, _, __',
+                             get_test_data_dictreader('languages.csv'))
+    def test_no_doubles_dropdown_categories(self, language, _, __):
+        print(language)
         self.home_page.switch_proper_language(language)
-        for category in self.home_page.get_all_categories():
-            actual_categories.append(category.text)
-        for category in actual_categories:
-            actual_categories.remove(category)
-            assert category not in actual_categories
+        actual_categories = [c.text for c in
+                             self.home_page.get_all_categories()]
+        assert len(set(actual_categories)) == len(actual_categories)
