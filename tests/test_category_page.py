@@ -17,7 +17,7 @@ class TestCategoryPage(BaseTest):
         self.category_page = CategoryPage(self.driver)
 
     def test_price_filter(self) -> None:
-        """Check if price filter is selected valid products.
+        """Check that price filter is selected valid products.
 
         Steps:
             1. Open "Category" page.
@@ -46,7 +46,7 @@ class TestCategoryPage(BaseTest):
         'language, year, _',
         get_test_data_dictreader('years_filter.csv'))
     def test_year_in_title(self, language, year, _) -> None:
-        """Check if a specific year presents in product title.
+        """Check that a specific year presents in product title.
 
         Steps:
             1. Choose any year "from"
@@ -70,7 +70,8 @@ class TestCategoryPage(BaseTest):
             assert self.category_page.if_proper_year_in_titles(year)
 
     def test_previous_link_disabled(self):
-        """Check if "Previous" link is disabled on the first page.
+        """Check that "Previous" link is disabled on the first "Category" page
+        (https://auto.ria.com/uk/legkovie/?page=1).
 
         Steps:
             1. Move to the first page
@@ -81,7 +82,7 @@ class TestCategoryPage(BaseTest):
         assert self.category_page.if_disabled_navigation_link("previous")
 
     def test_previous_link(self):
-        """Check if "Previous" link is working.
+        """Check that "Previous" link is working.
 
         Steps:
             1. Open the second page
@@ -97,7 +98,7 @@ class TestCategoryPage(BaseTest):
         assert "/?page=1" in self.driver.current_url
 
     def test_next_link(self):
-        """Check if "Next" link is working.
+        """Check that "Next" link is working.
 
         Steps:
             1. Click on the "Next" button
