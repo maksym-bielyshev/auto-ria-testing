@@ -110,6 +110,9 @@ class HomePage(BasePage):
         self.price_to.send_keys(data)
 
     def click_search_button(self):
+        self._driver.execute_script("return document.readyState")
+        import time
+        time.sleep(5)
         self.search_button.click()
 
     def get_all_categories(self):
