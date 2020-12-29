@@ -32,14 +32,16 @@ class TestCategoryPage(BaseTest):
         self.category_page.fill_price_to_field(PRICE_TO)
         self.category_page.click_search_link()
 
-        for card in self.category_page.product_card():
+        print(self.category_page.product_card)
+
+        for card in self.category_page.product_card:
             assert PRICE_FROM <= self.category_page.get_price(card) <= PRICE_TO
 
         while not self.category_page.is_disabled_navigation_link("next"):
             self.scroll_to_end()
             self.category_page.click_next_page_link()
 
-            for card in self.category_page.product_card():
+            for card in self.category_page.product_card:
                 assert PRICE_FROM <= self.category_page.get_price(
                     card) <= PRICE_TO
 
