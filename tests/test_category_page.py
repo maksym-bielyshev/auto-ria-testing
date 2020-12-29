@@ -68,3 +68,19 @@ class TestCategoryPage(BaseTest):
         while not self.category_page.if_disabled_navigation_link("next"):
             self.category_page.click_next_page_link()
             assert self.category_page.if_proper_year_in_titles(year)
+
+    def test_previous_link_disabled(self):
+        assert self.category_page.if_disabled_navigation_link("previous")
+
+    def test_previous_link(self):
+        self.driver.get("https://auto.ria.com/uk/legkovie/?page=2")
+        self.driver.execute_script(
+            "window.scrollTo(0, document.body.scrollHeight);")
+        self.category_page.click_previous_page_link()
+        assert "/?page=1" in self.driver.current_url
+
+    def test_next_link(self):
+        self.driver.execute_script(
+            "window.scrollTo(0, document.body.scrollHeight);")
+        self.category_page.click_next_page_link()
+        assert "/?page=2" in self.driver.current_url
