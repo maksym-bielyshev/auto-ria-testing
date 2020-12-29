@@ -36,8 +36,7 @@ class TestCategoryPage(BaseTest):
                                                            PRICE_TO)
 
         while not self.category_page.is_disabled_navigation_link("next"):
-            self.driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
+            self.scroll_to_end()
             self.category_page.click_next_page_link()
             assert self.category_page.if_price_in_proper_range(PRICE_FROM,
                                                                PRICE_TO)
@@ -62,8 +61,7 @@ class TestCategoryPage(BaseTest):
         self.category_page.click_search_link()
 
         assert self.category_page.if_proper_year_in_titles(year)
-        self.driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")
+        self.scroll_to_end()
 
         while not self.category_page.is_disabled_navigation_link("next"):
             self.category_page.click_next_page_link()
@@ -92,8 +90,7 @@ class TestCategoryPage(BaseTest):
              "/?page=1" is in address.
         """
         self.driver.get("https://auto.ria.com/uk/legkovie/?page=2")
-        self.driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")
+        self.scroll_to_end()
         self.category_page.click_previous_page_link()
         assert "/?page=1" in self.driver.current_url
 
@@ -105,7 +102,6 @@ class TestCategoryPage(BaseTest):
 
         Expected result: "/?page=2" is in address.
         """
-        self.driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")
+        self.scroll_to_end()
         self.category_page.click_next_page_link()
         assert "/?page=2" in self.driver.current_url
