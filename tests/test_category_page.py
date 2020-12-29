@@ -26,13 +26,11 @@ class TestCategoryPage(BaseTest):
 
         Expected result: all prices in a valid range
         """
-        PRICE_FROM = "10010"
-        PRICE_TO = "10100"
+        PRICE_FROM = 10010
+        PRICE_TO = 10100
         self.category_page.fill_price_from_field(PRICE_FROM)
         self.category_page.fill_price_to_field(PRICE_TO)
         self.category_page.click_search_link()
-
-        print(self.category_page.product_card)
 
         for card in self.category_page.product_card:
             assert PRICE_FROM <= self.category_page.get_price(card) <= PRICE_TO
