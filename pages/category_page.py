@@ -1,3 +1,7 @@
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.support.wait import WebDriverWait
+
 from pages.base_page import BasePage
 from selenium.webdriver import Remote
 from locators import LocatorsCategoryPage
@@ -346,7 +350,7 @@ class CategoryPage(BasePage):
             *LocatorsCategoryPage.SEARCH_LINK)
 
     @property
-    def product_cards(self):
+    def product_card(self):
         return self._driver.find_elements(
             *LocatorsCategoryPage.PRODUCT_CARD_OBJECT)
 
@@ -357,8 +361,8 @@ class CategoryPage(BasePage):
 
     @property
     def next_page_link(self):
-        return self._driver.find_element(
-            *LocatorsCategoryPage.NEXT_PAGE_LINK)
+        return WebDriverWait(self._driver, 20).until(
+            EC.element_to_be_clickable(LocatorsCategoryPage.NEXT_PAGE_LINK))
 
     @property
     def first_page_link(self):
@@ -424,12 +428,12 @@ class CategoryPage(BasePage):
     @property
     def year_from_dropdown(self):
         return DropdownComponent(self._driver,
-                                 *LocatorsCategoryPage.YEAR_FROM_DROPDOWN)
+                                 LocatorsCategoryPage.YEAR_FROM_DROPDOWN)
 
     @property
     def year_to_dropdown(self):
         return DropdownComponent(self._driver,
-                                 *LocatorsCategoryPage.YEAR_TO_DROPDOWN)
+                                 LocatorsCategoryPage.YEAR_TO_DROPDOWN)
 
     @property
     def currency_dropdown(self):
@@ -661,9 +665,19 @@ class CategoryPage(BasePage):
     def click_fourth_middle_pagination_link(self):
         self.fourth_middle_pagination_link.click()
 
-    def get_prices(self):
-        prices = []
-        for card in self.product_cards:
-            price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
-            prices.append(int(''.join(price.split(' '))))
-        return prices
+    def get_price(self, card):
+        price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
+        return ''.join(price.split(' '))
+
+    def get_card_title(self, product_card):
+        return product_card.find_element(
+            *LocatorsCategoryPage.PRODUCT_TITLE).text
+
+    def is_disabled_navigation_link(self, navigation_link):
+        if navigation_link == "previous":
+            locator = LocatorsCategoryPage.PREVIOUS_PAGE_LINK
+        elif navigation_link == "next":
+            locator = LocatorsCategoryPage.NEXT_PAGE_LINK
+        link = self._driver.find_element(*locator)
+        attribute = link.get_attribute("class")
+        return "disabled" in attribute
