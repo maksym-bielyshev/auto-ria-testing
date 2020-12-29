@@ -14,7 +14,7 @@ class TestCategoryPage(BaseTest):
         self.category_page = CategoryPage(self.driver)
 
     def test_price_filter(self) -> None:
-        """Check if price filter is selected valid products.
+        """Check that price filter is selected valid products.
 
         Steps:
             1. Open "Category" page.
