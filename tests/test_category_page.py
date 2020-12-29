@@ -17,7 +17,7 @@ class TestCategoryPage(BaseTest):
         self.category_page = CategoryPage(self.driver)
 
     def test_price_filter(self) -> None:
-        """Check if price filter is selected valid products.
+        """Check that price filter is selected valid products.
 
         Steps:
             1. Open "Category" page.
@@ -26,27 +26,28 @@ class TestCategoryPage(BaseTest):
 
         Expected result: all prices in a valid range
         """
-        PRICE_FROM = 10010
-        PRICE_TO = 10100
+        PRICE_FROM = "10010"
+        PRICE_TO = "10100"
         self.category_page.fill_price_from_field(PRICE_FROM)
         self.category_page.fill_price_to_field(PRICE_TO)
         self.category_page.click_search_link()
 
-        assert self.category_page.if_price_in_proper_range(PRICE_FROM,
-                                                           PRICE_TO)
+        for card in self.category_page.product_card():
+            assert PRICE_FROM <= self.category_page.get_price(card) <= PRICE_TO
 
         while not self.category_page.if_disabled_navigation_link("next"):
-            self.driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
+            self.scroll_to_end()
             self.category_page.click_next_page_link()
-            assert self.category_page.if_price_in_proper_range(PRICE_FROM,
-                                                               PRICE_TO)
+
+            for card in self.category_page.product_card():
+                assert PRICE_FROM <= self.category_page.get_price(
+                    card) <= PRICE_TO
 
     @pytest.mark.parametrize(
         'language, year, _',
         get_test_data_dictreader('years_filter.csv'))
     def test_year_in_title(self, language, year, _) -> None:
-        """Check if a specific year presents in product title.
+        """Check that a specific year presents in product title.
 
         Steps:
             1. Choose any year "from"
@@ -61,10 +62,13 @@ class TestCategoryPage(BaseTest):
         self.category_page.year_from_dropdown.choose_dropdown_option(year)
         self.category_page.click_search_link()
 
-        assert self.category_page.if_proper_year_in_titles(year)
-        self.driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")
+        for card in self.category_page.product_card:
+            assert year in self.category_page.get_card_title(card)
+
+        self.scroll_to_end()
 
         while not self.category_page.if_disabled_navigation_link("next"):
             self.category_page.click_next_page_link()
-            assert self.category_page.if_proper_year_in_titles(year)
+            for card in self.category_page.product_card:
+                assert year in self.category_page.get_card_title(card)
+            self.scroll_to_end()

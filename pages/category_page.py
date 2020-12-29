@@ -350,7 +350,7 @@ class CategoryPage(BasePage):
             *LocatorsCategoryPage.SEARCH_LINK)
 
     @property
-    def product_cards(self):
+    def product_card(self):
         return self._driver.find_elements(
             *LocatorsCategoryPage.PRODUCT_CARD_OBJECT)
 
@@ -665,43 +665,19 @@ class CategoryPage(BasePage):
     def click_fourth_middle_pagination_link(self):
         self.fourth_middle_pagination_link.click()
 
-    def get_prices(self):
-        prices = []
-        for card in self.product_cards:
-            price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
-            try:
-                prices.append(int(''.join(price.split(' '))))
-            except ValueError:
-                break
-        return prices
+    def get_price(self, card):
+        price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
+        return ''.join(price.split(' '))
 
-    def get_titles(self):
-        titles = []
-        for card in self.product_cards:
-            title = card.find_element(*LocatorsCategoryPage.PRODUCT_TITLE).text
-            titles.append(title)
-        return titles
-
-    def right_link(self):
-        link = self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
-        attribute = link.get_attribute("class")
-        return attribute
+    def get_card_title(self, product_card):
+        return product_card.find_element(
+            *LocatorsCategoryPage.PRODUCT_TITLE).text
 
     def if_disabled_navigation_link(self, navigation_link):
         if navigation_link == "previous":
-            link = self._driver.find_element(
-                *LocatorsCategoryPage.PREVIOUS_PAGE_LINK)
-            attribute = link.get_attribute("class")
-        if navigation_link == "next":
-            link = self._driver.find_element(
-                *LocatorsCategoryPage.NEXT_PAGE_LINK)
-            attribute = link.get_attribute("class")
+            locator = LocatorsCategoryPage.PREVIOUS_PAGE_LINK
+        elif navigation_link == "next":
+            locator = LocatorsCategoryPage.NEXT_PAGE_LINK
+        link = self._driver.find_element(*locator)
+        attribute = link.get_attribute("class")
         return "disabled" in attribute
-
-    def if_proper_year_in_titles(self, year):
-        for title in self.get_titles():
-            return year in title
-
-    def if_price_in_proper_range(self, price_from, price_to):
-        for price in self.get_prices():
-            return price_from <= price <= price_to
