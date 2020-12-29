@@ -35,7 +35,7 @@ class TestCategoryPage(BaseTest):
         assert self.category_page.if_price_in_proper_range(PRICE_FROM,
                                                            PRICE_TO)
 
-        while not self.category_page.if_disabled_navigation_link("next"):
+        while not self.category_page.is_disabled_navigation_link("next"):
             self.driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight);")
             self.category_page.click_next_page_link()
@@ -65,7 +65,7 @@ class TestCategoryPage(BaseTest):
         self.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
 
-        while not self.category_page.if_disabled_navigation_link("next"):
+        while not self.category_page.is_disabled_navigation_link("next"):
             self.category_page.click_next_page_link()
             assert self.category_page.if_proper_year_in_titles(year)
 
@@ -79,7 +79,7 @@ class TestCategoryPage(BaseTest):
         Expected result:
             The "Previous" link is disabled.
         """
-        assert self.category_page.if_disabled_navigation_link("previous")
+        assert self.category_page.is_disabled_navigation_link("previous")
 
     def test_previous_link(self):
         """Check that "Previous" link is working.

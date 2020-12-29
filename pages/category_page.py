@@ -690,15 +690,13 @@ class CategoryPage(BasePage):
         attribute = link.get_attribute("class")
         return attribute
 
-    def if_disabled_navigation_link(self, navigation_link):
+    def is_disabled_navigation_link(self, navigation_link):
         if navigation_link == "previous":
-            link = self._driver.find_element(
-                *LocatorsCategoryPage.PREVIOUS_PAGE_LINK)
-            attribute = link.get_attribute("class")
-        if navigation_link == "next":
-            link = self._driver.find_element(
-                *LocatorsCategoryPage.NEXT_PAGE_LINK)
-            attribute = link.get_attribute("class")
+            locator = LocatorsCategoryPage.PREVIOUS_PAGE_LINK
+        elif navigation_link == "next":
+            locator = LocatorsCategoryPage.NEXT_PAGE_LINK
+        link = self._driver.find_element(*locator)
+        attribute = link.get_attribute("class")
         return "disabled" in attribute
 
     def if_proper_year_in_titles(self, year):
