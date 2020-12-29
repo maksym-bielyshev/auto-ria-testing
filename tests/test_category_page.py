@@ -70,9 +70,26 @@ class TestCategoryPage(BaseTest):
             assert self.category_page.if_proper_year_in_titles(year)
 
     def test_previous_link_disabled(self):
+        """Check if "Previous" link is disabled on the first page.
+
+        Steps:
+            1. Move to the first page
+
+        Expected result:
+            The "Previous" link is disabled.
+        """
         assert self.category_page.if_disabled_navigation_link("previous")
 
     def test_previous_link(self):
+        """Check if "Previous" link is working.
+
+        Steps:
+            1. Open the second page
+            2. Move to the first page
+
+        Expected result:
+             "/?page=1" is in address.
+        """
         self.driver.get("https://auto.ria.com/uk/legkovie/?page=2")
         self.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
@@ -80,6 +97,13 @@ class TestCategoryPage(BaseTest):
         assert "/?page=1" in self.driver.current_url
 
     def test_next_link(self):
+        """Check if "Next" link is working.
+
+        Steps:
+            1. Click on the "Next" button
+
+        Expected result: "/?page=2" is in address.
+        """
         self.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
         self.category_page.click_next_page_link()
