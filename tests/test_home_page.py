@@ -26,9 +26,6 @@ class TestHomePage:
         home_page.switch_proper_language(language)
         home_page.category_dropdown.choose_dropdown_option(category)
         home_page.click_search_button()
-        home_page._driver.execute_script("return document.readyState")
-        import time
-        time.sleep(5)
         assert substring in home_page._driver.current_url
 
     @pytest.mark.parametrize(
@@ -52,7 +49,4 @@ class TestHomePage:
         home_page.switch_proper_language(language)
         home_page.category_dropdown.choose_dropdown_option(category)
         home_page.click_search_button()
-        home_page._driver.execute_script("return document.readyState")
-        import time
-        time.sleep(5)
         assert substring in home_page._driver.current_url
