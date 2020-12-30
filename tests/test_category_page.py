@@ -87,7 +87,7 @@ class TestCategoryPage(BaseTest):
             2. Move to the first page
 
         Expected result:
-             "/?page=1" is in address.
+            "/?page=1" is in address.
         """
         self.driver.get("https://auto.ria.com/uk/legkovie/?page=2")
         self.scroll_to_end()
@@ -100,8 +100,35 @@ class TestCategoryPage(BaseTest):
         Steps:
             1. Click on the "Next" button
 
-        Expected result: "/?page=2" is in address.
+        Expected result:
+            "/?page=2" is in address.
         """
         self.scroll_to_end()
         self.category_page.click_next_page_link()
         assert "/?page=2" in self.driver.current_url
+
+    def test_next_link_disabled(self):
+        """Check that "Next" link is disabled on the last page
+
+        Steps:
+            1. Move to the last page
+
+        Expected result:
+            The "Next" link is disabled
+        """
+        self.scroll_to_end()
+        self.category_page.click_last_middle_pagination_link()
+        assert self.category_page.is_disabled_navigation_link("next")
+
+    def test_middle_pagination_link(self):
+        """Check the middle pagination for working
+
+        Steps:
+            1. Click on the "5" link in the middle pagination links
+
+        Expected result:
+            "/?page=5" is in address.
+        """
+        self.scroll_to_end()
+        self.category_page.click_fourth_middle_pagination_link()
+        assert "/?page=5" in self.driver.current_url
