@@ -316,3 +316,18 @@ class LocatorsCategoryPage:
         By.CLASS_NAME,
         "address"
     )
+
+
+class LocatorsReviewPage:
+    PRODUCT_CARD = (
+        By.XPATH,
+        "//body//div//article")
+    PRODUCT_SCORE = (
+        By.CSS_SELECTOR,
+        ".reviews-car-cardrat-i-element.reviews-car-card_rating-val")
+    PRODUCT_PHOTO = (By.XPATH,
+                     "div[2]//h3[1]//a[1]")
+    PRODUCT_OFFERS = (
+        By.XPATH, '//a[@class="offer-car_i-l"]/h4/span')
+    PRODUCT_PRICE = (
+        By.CSS_SELECTOR, ".bold.green.size22")
