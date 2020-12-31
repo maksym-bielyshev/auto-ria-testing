@@ -35,7 +35,7 @@ class TestCategoryPage(BaseTest):
         for card in self.category_page.product_card():
             assert PRICE_FROM <= self.category_page.get_price(card) <= PRICE_TO
 
-        while not self.category_page.is_disabled_navigation_link("next"):
+        while not self.category_page.if_disabled_navigation_link("next"):
             self.scroll_to_end()
             self.category_page.click_next_page_link()
 
@@ -67,7 +67,7 @@ class TestCategoryPage(BaseTest):
 
         self.scroll_to_end()
 
-        while not self.category_page.is_disabled_navigation_link("next"):
+        while not self.category_page.if_disabled_navigation_link("next"):
             self.category_page.click_next_page_link()
             for card in self.category_page.product_card:
                 assert year in self.category_page.get_card_title(card)

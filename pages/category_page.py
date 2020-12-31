@@ -673,7 +673,7 @@ class CategoryPage(BasePage):
         return product_card.find_element(
             *LocatorsCategoryPage.PRODUCT_TITLE).text
 
-    def is_disabled_navigation_link(self, navigation_link):
+    def if_disabled_navigation_link(self, navigation_link):
         if navigation_link == "previous":
             locator = LocatorsCategoryPage.PREVIOUS_PAGE_LINK
         elif navigation_link == "next":
