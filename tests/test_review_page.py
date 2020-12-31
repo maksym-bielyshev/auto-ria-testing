@@ -24,8 +24,8 @@ class TestHomePage(BaseTest):
                 self.review_page = ReviewPage(self.driver)
                 self.review_page.click_offers()
                 self.category_page = CategoryPage(self.driver)
-                for card in self.category_page.product_card:
-                    prices.append(self.review_page.get_price(card))
+                for c in self.category_page.product_cards:
+                    prices.append(self.review_page.get_price(c))
 
                     while not self.category_page.is_disabled_navigation_link(
                             "next"):

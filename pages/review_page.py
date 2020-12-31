@@ -1,11 +1,7 @@
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from pages.base_page import BasePage
 from locators import LocatorsReviewPage
-from components import DropdownComponent
 from selenium.webdriver.common.action_chains import ActionChains
-from locators import LocatorsCategoryPage
+
 
 class ReviewPage(BasePage):
     """Class for the review page of 'AUTO.RIA'"""
