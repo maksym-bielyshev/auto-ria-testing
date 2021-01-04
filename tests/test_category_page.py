@@ -1,6 +1,7 @@
 import pytest
 
 from pages.category_page import CategoryPage
+from pages.base_page import BasePage
 from tests.base_test import BaseTest
 from tests.conftest import get_test_data_dictreader
 
@@ -32,16 +33,17 @@ class TestCategoryPage(BaseTest):
         self.category_page.fill_price_to_field(PRICE_TO)
         self.category_page.click_search_link()
 
-        for card in self.category_page.product_card:
-            assert PRICE_FROM <= self.category_page.get_price(card) <= PRICE_TO
-
-        while not self.category_page.is_disabled_navigation_link("next"):
-            self.scroll_to_end()
-            self.category_page.click_next_page_link()
-
+        i = 0
+        while i < 1:
             for card in self.category_page.product_card:
                 assert PRICE_FROM <= self.category_page.get_price(
                     card) <= PRICE_TO
+            BasePage(self.driver).scroll_to_end()
+
+            if not self.category_page.is_disabled_navigation_link("next"):
+                self.category_page.click_next_page_link()
+            else:
+                i += 1
 
     @pytest.mark.parametrize(
         'language, year, _',
@@ -62,13 +64,12 @@ class TestCategoryPage(BaseTest):
         self.category_page.year_from_dropdown.choose_dropdown_option(year)
         self.category_page.click_search_link()
 
-        for card in self.category_page.product_card:
-            assert year in self.category_page.get_card_title(card)
-
-        self.scroll_to_end()
-
-        while not self.category_page.is_disabled_navigation_link("next"):
-            self.category_page.click_next_page_link()
+        i = 0
+        while i < 1:
             for card in self.category_page.product_card:
                 assert year in self.category_page.get_card_title(card)
-            self.scroll_to_end()
+            BasePage(self.driver).scroll_to_end()
+            if not self.category_page.is_disabled_navigation_link("next"):
+                self.category_page.click_next_page_link()
+            else:
+                i += 1

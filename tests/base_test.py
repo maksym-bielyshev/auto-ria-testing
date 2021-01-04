@@ -13,7 +13,3 @@ class BaseTest:
         :return: None
         """
         self.driver.close()
-
-    def scroll_to_end(self):
-        self.driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")

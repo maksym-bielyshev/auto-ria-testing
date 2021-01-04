@@ -28,3 +28,7 @@ class BasePage:
             russian_link.click()
         else:
             pass
+
+    def scroll_to_end(self):
+        self._driver.execute_script(
+            "window.scrollTo(0, document.body.scrollHeight);")
