@@ -1,23 +1,35 @@
-from _pytest.fixtures import FixtureRequest
 import pytest
 import csv
 from selenium import webdriver
+import time
+from pages.home_page import HomePage
+
+import configparser
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 
-@pytest.fixture(scope="function")
-def init_driver(request: FixtureRequest) -> None:
+@pytest.fixture(scope="session")
+def init_driver():
     """Remote driver initialization with required options.
 
-    :param request: FixtureRequest
     :return: None
     """
-    driver = webdriver.Chrome('../driver/chromedriver_win32.exe')
-
-    request.cls.driver = driver
+    driver = webdriver.Chrome(config['drivers']['windows'])
     driver.implicitly_wait(10)
+    driver.set_page_load_timeout(30)
     driver.maximize_window()
-
     yield driver
+
+    driver.close()
+
+
+@pytest.fixture(scope='function')
+def open_home_page(init_driver):
+    driver = init_driver
+    driver.get(config['urls']['home_page'])
+    time.sleep(3)
+    return HomePage(driver)
 
 
 def get_test_data(file_name: str) -> list:
