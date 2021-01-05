@@ -670,8 +670,8 @@ class CategoryPage(BasePage):
         if card is not None:
             try:
                 return int(''.join(price.split(' ')))
-            except:
-                return ValueError
+            except ValueError:
+                raise ValueError
 
     def get_card_title(self, product_card):
         return product_card.find_element(
