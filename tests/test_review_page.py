@@ -17,15 +17,22 @@ class TestHomePage(BaseTest):
     def test_prices_analysis(self):
         SCORE = "5.0"
         prices = []
+
+
         for card in self.review_page.product_cards:
             if self.review_page.get_score(card) == SCORE:
-                self.review_page.click_product_photo(card)
-                self.driver.close()
-                self.review_page = ReviewPage(self.driver)
-                self.review_page.click_offers()
-                self.category_page = CategoryPage(self.driver)
+
+                # get product_title
+
+                self.driver.get("https://auto.ria.com/uk/reviews/")
+
+                # past product title and search
+
+
                 for c in self.category_page.product_cards:
                     prices.append(self.review_page.get_price(c))
+
+                    self.scroll_to_end()
 
                     while not self.category_page.is_disabled_navigation_link(
                             "next"):
