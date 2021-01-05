@@ -1,4 +1,3 @@
-from _pytest.fixtures import FixtureRequest
 import pytest
 import csv
 from selenium import webdriver
@@ -47,7 +46,7 @@ def get_test_data(file_name: str) -> list:
         return test_data_list
 
 
-def get_test_data_dictreader(file, file_second = None):
+def get_test_data_dictreader(file, file_second=None):
     files = [file]
     if file_second is not None:
         files.append(file_second)
