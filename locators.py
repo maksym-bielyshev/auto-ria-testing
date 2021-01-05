@@ -326,7 +326,7 @@ class LocatorsReviewPage:
         By.CSS_SELECTOR,
         ".reviews-car-cardrat-i-element.reviews-car-card_rating-val")
     PRODUCT_PHOTO = (By.XPATH,
-                     "div[2]//h3[1]//a[1]")
+                     "div[@class='reviews-car-cardi-top']//h3[1]//a[1]")
     PRODUCT_OFFERS = (
         By.XPATH, '//a[@class="offer-car_i-l"]/h4/span')
     PRODUCT_PRICE = (
