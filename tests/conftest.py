@@ -46,12 +46,17 @@ def get_test_data(file_name: str) -> list:
         return test_data_list
 
 
-def get_test_data_dictreader(file):
-    fieldnames = ('language', 'data', 'expected_result')
-    csv_file = open(f'../tests_data/{file}', encoding='utf8')
-    input_file = csv.DictReader(csv_file, delimiter=';', fieldnames=fieldnames)
+def get_test_data_dictreader(file, file_second=None):
+    files = [file]
+    if file_second is not None:
+        files.append(file_second)
     test_data_list = []
-    for row in input_file:
-        data = (row['language'], row['data'], row['expected_result'])
-        test_data_list.append(data)
+    for file in files:
+        fieldnames = ('language', 'data', 'expected_result')
+        csv_file = open(f'../tests_data/{file}', encoding='utf8')
+        input_file = csv.DictReader(csv_file, delimiter=';',
+                                    fieldnames=fieldnames)
+        for row in input_file:
+            data = (row['language'], row['data'], row['expected_result'])
+            test_data_list.append(data)
     return test_data_list
