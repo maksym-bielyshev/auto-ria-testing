@@ -50,3 +50,33 @@ class TestHomePage:
         home_page.category_dropdown.choose_dropdown_option(category)
         home_page.click_search_button()
         assert substring in home_page._driver.current_url
+
+    @pytest.mark.parametrize(
+        'language, expected_categories, _',
+        get_test_data_dictreader('category_dropdown.csv',
+                                 'category_dropdown_without_naming.csv'))
+    def test_categories_dropdown_options_list(self, open_home_page, language,
+                                              expected_categories, _) -> None:
+        """Check that "Categories" dropdown list is equal to expected list.
+
+        Steps:
+            1. Change language to a proper language
+            2. Click on the "Categories" dropdown
+            3. Check an option is in the expected list.
+
+        Expected result: all options are in the expected list.
+        """
+        home_page = open_home_page
+        home_page.switch_proper_language(language)
+        actual_categories = [c.text for c in
+                             home_page.get_all_categories()]
+        assert expected_categories in actual_categories
+
+    @pytest.mark.parametrize('language, _, __',
+                             get_test_data_dictreader('languages.csv'))
+    def test_no_doubles_dropdown_categories(self, open_home_page, language, _,
+                                            __):
+        home_page = open_home_page
+        home_page.switch_proper_language(language)
+        actual_categories = [c.text for c in home_page.get_all_categories()]
+        assert len(set(actual_categories)) == len(actual_categories)

@@ -114,3 +114,10 @@ class HomePage(BasePage):
         import time
         time.sleep(5)
         self.search_button.click()
+
+    def get_all_categories(self):
+        categories_dropdown = self._driver.find_element(*LocatorsHomeFilter.
+                                                        CATEGORY_DROPDOWN)
+        categories = [x for x in
+                      categories_dropdown.find_elements_by_tag_name("option")]
+        return categories
