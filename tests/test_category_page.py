@@ -1,6 +1,7 @@
 import pytest
 
 from pages.category_page import CategoryPage
+from pages.base_page import BasePage
 from tests.base_test import BaseTest
 from tests.conftest import get_test_data_dictreader
 
@@ -129,6 +130,21 @@ class TestCategoryPage(BaseTest):
         Expected result:
             "/?page=5" is in address.
         """
-        self.scroll_to_end()
+        BasePage(self.driver).scroll_to_end()
         self.category_page.click_fourth_middle_pagination_link()
         assert "/?page=5" in self.driver.current_url
+
+    def test_first_pagination_link(self):
+        """Check that first pagination link is working
+
+        Steps:
+            1. Click on the "5" link in the middle pagination links
+            2. Click on the "1" link in the middle pagination links
+
+        Expected result:
+             "/?page=1" is in address.
+        """
+        BasePage(self.driver).scroll_to_end()
+        self.category_page.click_fourth_middle_pagination_link()
+        self.category_page.click_first_page_link()
+        assert "/?page=1" in self.driver.current_url

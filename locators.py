@@ -288,31 +288,33 @@ class LocatorsCategoryPage:
     PREVIOUS_PAGE_LINK = (
         By.XPATH,
         "//span[@class='page-item prev']//a")
+    FIRST_PAGE_LINK = (
+        By.XPATH,
+        "//div[@class='boxed']//span[2]//a[1]")
+    FIRST_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@class='boxed']//span[3]//a[1]")
+    SECOND_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@class='boxed']//span[4]//a[1]")
+    THIRD_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@class='boxed']//span[5]//a[1]")
+    FOURTH_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@class='boxed']//span[6]//a[1]")
+    FIFTH_MIDDLE_PAGINATION_LINK = (
+        By.XPATH,
+        "//div[@class='boxed']//span[7]//a[1]")
+    LAST_PAGE_LINK = (
+        By.XPATH,
+        "//div[@class='boxed']//span[8]//a[1]")
     NEXT_PAGE_LINK = (
         By.XPATH,
         "//span[@class='page-item next text-r']//a")
-    FIRST_PAGE_LINK = (
-        By.XPATH,
-        "//div[@id='searchPagination']//span[2]//a")
-    LAST_PAGE_LINK = (
-        By.XPATH,
-        "//div[@id='searchPagination']//span[9]//a")
-    FIRST_MIDDLE_PAGINATION_LINK = (
-        By.XPATH,
-        "//div[@id='searchPagination']//span[4]//a")
-    SECOND_MIDDLE_PAGINATION_LINK = (
-        By.XPATH,
-        "//div[@id='searchPagination']//span[5]//a")
-    THIRD_MIDDLE_PAGINATION_LINK = (
-        By.XPATH,
-        "//div[@id='searchPagination']//span[6]//a")
-    FOURTH_MIDDLE_PAGINATION_LINK = (
-        By.XPATH,
-        "//div[@id='searchPagination']//span[7]//a")
     PRODUCT_PRICE = (
         By.CSS_SELECTOR,
         ".bold.green.size22")
     PRODUCT_TITLE = (
         By.CLASS_NAME,
-        "address"
-    )
+        "address")

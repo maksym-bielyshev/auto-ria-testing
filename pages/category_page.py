@@ -6,6 +6,7 @@ from pages.base_page import BasePage
 from selenium.webdriver import Remote
 from locators import LocatorsCategoryPage
 from components import DropdownComponent
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class CategoryPage(BasePage):
@@ -391,8 +392,9 @@ class CategoryPage(BasePage):
 
     @property
     def fourth_middle_pagination_link(self):
-        return self._driver.find_element(
-            *LocatorsCategoryPage.FOURTH_MIDDLE_PAGINATION_LINK)
+        return WebDriverWait(self._driver, 50).until(
+            EC.element_to_be_clickable(
+                LocatorsCategoryPage.FIFTH_MIDDLE_PAGINATION_LINK))
 
     @property
     def car_category_dropdown(self):
@@ -663,7 +665,9 @@ class CategoryPage(BasePage):
         self.third_middle_pagination_link.click()
 
     def click_fourth_middle_pagination_link(self):
-        self.fourth_middle_pagination_link.click()
+        ActionChains(self._driver).move_to_element(
+            self.fourth_middle_pagination_link).click().perform()
+
 
     def click_last_middle_pagination_link(self):
         self.last_middle_pagination_link.click()
