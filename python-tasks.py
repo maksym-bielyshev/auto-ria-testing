@@ -33,25 +33,26 @@ print(f'Is lists are equal: {is_list_equal(list1, list2)}')
 
 
 def is_dicts_equal(input_dict1, input_dict2):
-    dicts = [input_dict1, input_dict2]
-    sorted_items = []
-    for d in dicts:
-        for item in d.items():
-            sorted_item = []
-            for i in item:
-                if isinstance(i, int):
-                    sorted_item.append(i)
-                else:
-                    sorted_item.append(sorted(i))
-            if sorted_item in sorted_items:
-                sorted_items.remove(sorted_item)
-            else:
-                sorted_items.append(sorted_item)
-    return sorted_items == []
+    for d in [input_dict1, input_dict2]:
+        for key, value in d.items():
+            if isinstance(value, (int, float, dict)):
+                continue
+            elif isinstance(value, list):
+                d[key] = sorted(value)
+            elif isinstance(value, tuple):
+                d[key] = tuple(sorted(value))
+            elif isinstance(value, set):
+                d[key] = set(sorted(value))
+            elif isinstance(value, str):
+                d[key] = ''.join(sorted(value))
+
+    return input_dict1 == input_dict2
 
 
-dict1 = {1: [2, 1], 2: [1, 2, 3, 4, 5], 3: [2, 1], 4: 2, 5: 2}
-dict2 = {1: [1, 2], 2: [5, 4, 3, 2, 1], 3: [1, 2], 4: 1, 5: 1}
+dict1 = {1: [2, 1], 2: [1, 2, 3, 4, 5], 3: {2, 1}, 4: 1.1, 5: 2, 6: {1: 1},
+         7: {1, 2, 3}, 8: 'abc'}
+dict2 = {1: [1, 2], 2: [5, 4, 3, 2, 1], 3: {1, 2}, 4: 1.1, 5: 2, 6: {1: 1},
+         7: {3, 2, 1}, 8: 'cba'}
 print(f'Is dicts are equal: {is_dicts_equal(dict1, dict2)}')
 
 
@@ -61,13 +62,13 @@ def is_dict_values_equal(input_dict1, input_dict2):
     sorted_values_dict2 = []
 
     for value in input_dict1.values():
-        if isinstance(value, int):
+        if isinstance(value, (int, float)):
             sorted_values_dict1.append(value)
         else:
             sorted_values_dict1.append(sorted(value))
 
     for value in input_dict2.values():
-        if isinstance(value, int):
+        if isinstance(value, (int, float)):
             sorted_values_dict2.append(value)
         else:
             sorted_values_dict2.append(sorted(value))
