@@ -25,7 +25,7 @@ def is_list_equal(input_list1, input_list2):
             input_list1.remove(i)
             input_list2.remove(i)
 
-    return len(input_list1) == len(input_list2)
+    return sorted(input_list1) == sorted(input_list2)
 
 
 list2 = [1, 1, 1, 2, 2, 3, 5, 6, 7, 8, '', ' ', '  ', '   ', '    ']
@@ -50,21 +50,34 @@ def is_dicts_equal(input_dict1, input_dict2):
     return sorted_items == []
 
 
-dict1 = {1: [2, 1], 2: [1, 2, 3, 4, 5], 3: [2, 1]}
-dict2 = {1: [1, 2], 2: [5, 4, 3, 2, 1], 3: [1, 2]}
+dict1 = {1: [2, 1], 2: [1, 2, 3, 4, 5], 3: [2, 1], 4: 2, 5: 2}
+dict2 = {1: [1, 2], 2: [5, 4, 3, 2, 1], 3: [1, 2], 4: 1, 5: 1}
 print(f'Is dicts are equal: {is_dicts_equal(dict1, dict2)}')
 
 
 def is_dict_values_equal(input_dict1, input_dict2):
-    dicts = [input_dict1, input_dict2]
-    values = []
-    for d in dicts:
-        for value in d.values():
-            if sorted(value) in values:
-                values.remove(sorted(value))
-            else:
-                values.append(sorted(value))
-    return values == []
+
+    sorted_values_dict1 = []
+    sorted_values_dict2 = []
+
+    for value in input_dict1.values():
+        if isinstance(value, int):
+            sorted_values_dict1.append(value)
+        else:
+            sorted_values_dict1.append(sorted(value))
+
+    for value in input_dict2.values():
+        if isinstance(value, int):
+            sorted_values_dict2.append(value)
+        else:
+            sorted_values_dict2.append(sorted(value))
+
+    for value in sorted_values_dict1[:]:
+        if value in sorted_values_dict2[:]:
+            sorted_values_dict1.remove(value)
+            sorted_values_dict2.remove(value)
+
+    return sorted(sorted_values_dict1) == sorted(sorted_values_dict2)
 
 
 print(f'Is dict values are equal: {is_dict_values_equal(dict1, dict2)}')
