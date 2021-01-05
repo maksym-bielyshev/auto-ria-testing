@@ -35,7 +35,7 @@ print(f'Is lists are equal: {is_list_equal(list1, list2)}')
 def is_dicts_equal(input_dict1, input_dict2):
     for d in [input_dict1, input_dict2]:
         for key, value in d.items():
-            if isinstance(value, (int, float, dict)):
+            if isinstance(value, (int, float, dict, str)):
                 continue
             elif isinstance(value, list):
                 d[key] = sorted(value)
@@ -43,8 +43,6 @@ def is_dicts_equal(input_dict1, input_dict2):
                 d[key] = tuple(sorted(value))
             elif isinstance(value, set):
                 d[key] = set(sorted(value))
-            elif isinstance(value, str):
-                d[key] = ''.join(sorted(value))
 
     return input_dict1 == input_dict2
 
