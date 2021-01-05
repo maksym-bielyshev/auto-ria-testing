@@ -18,7 +18,6 @@ class TestHomePage(BaseTest):
         SCORE = "5.0"
         prices = []
 
-
         for card in self.review_page.product_cards:
             if self.review_page.get_score(card) == SCORE:
 
@@ -27,7 +26,6 @@ class TestHomePage(BaseTest):
                 self.driver.get("https://auto.ria.com/uk/reviews/")
 
                 # past product title and search
-
 
                 for c in self.category_page.product_cards:
                     prices.append(self.review_page.get_price(c))
