@@ -668,10 +668,7 @@ class CategoryPage(BasePage):
     def get_price(self, card):
         price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
         if card is not None:
-            try:
-                return int(''.join(price.split(' ')))
-            except ValueError:
-                raise ValueError
+            return int(''.join(price.split(' ')))
 
     def get_card_title(self, product_card):
         return product_card.find_element(
