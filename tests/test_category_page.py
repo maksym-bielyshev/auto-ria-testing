@@ -33,14 +33,17 @@ class TestCategoryPage(BaseTest):
         self.category_page.fill_price_to_field(PRICE_TO)
         self.category_page.click_search_link()
 
-        assert self.category_page.if_price_in_proper_range(PRICE_FROM,
-                                                           PRICE_TO)
+        break_loop = True
+        while break_loop:
+            for card in self.category_page.product_card:
+                assert PRICE_FROM <= self.category_page.get_price(
+                    card) <= PRICE_TO
+            BasePage(self.driver).scroll_to_end()
 
-        while not self.category_page.is_disabled_navigation_link("next"):
-            self.scroll_to_end()
-            self.category_page.click_next_page_link()
-            assert self.category_page.if_price_in_proper_range(PRICE_FROM,
-                                                               PRICE_TO)
+            if not self.category_page.is_disabled_navigation_link("next"):
+                self.category_page.click_next_page_link()
+            else:
+                break_loop = False
 
     @pytest.mark.parametrize(
         'language, year, _',
@@ -61,12 +64,15 @@ class TestCategoryPage(BaseTest):
         self.category_page.year_from_dropdown.choose_dropdown_option(year)
         self.category_page.click_search_link()
 
-        assert self.category_page.if_proper_year_in_titles(year)
-        self.scroll_to_end()
-
-        while not self.category_page.is_disabled_navigation_link("next"):
-            self.category_page.click_next_page_link()
-            assert self.category_page.if_proper_year_in_titles(year)
+        break_loop = True
+        while break_loop:
+            for card in self.category_page.product_card:
+                assert year in self.category_page.get_card_title(card)
+            BasePage(self.driver).scroll_to_end()
+            if not self.category_page.is_disabled_navigation_link("next"):
+                self.category_page.click_next_page_link()
+            else:
+                break_loop = False
 
     def test_previous_link_disabled(self):
         """Check that "Previous" link is disabled on the first "Category" page
