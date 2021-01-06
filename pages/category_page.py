@@ -645,6 +645,8 @@ class CategoryPage(BasePage):
         self.previous_page_link.click()
 
     def click_next_page_link(self):
+        import time
+        time.sleep(2)
         self.next_page_link.click()
 
     def click_first_page_link(self):
@@ -670,17 +672,16 @@ class CategoryPage(BasePage):
 
     def get_price(self, card):
         price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
-        if price is not None:
+        print(price)
+        if price != '' and price is not None:
             return int(''.join(price.split(' ')))
 
     def get_prices(self):
         prices = []
         for card in self.product_cards:
             price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
-            try:
+            if price != '' and price is not None:
                 prices.append(int(''.join(price.split(' '))))
-            except ValueError:
-                break
         return prices
 
     def get_titles(self):

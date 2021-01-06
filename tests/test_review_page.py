@@ -17,13 +17,14 @@ class TestHomePage(BaseTest):
 
     def test_prices_analysis(self):
         SCORE = "5.0"
-        prices = []
+        prices_lists = []
+        cards = []
 
         for card in self.review_page.product_cards:
             if self.review_page.get_score(card) == SCORE:
-                current_card = card
+                cards.append(card)
 
-        splitted_title = self.review_page.get_title(current_card).split()
+        splitted_title = self.review_page.get_title(cards[0]).split()
         brand = splitted_title[0]
         model = splitted_title[-2]
         year = splitted_title[-1]
@@ -39,22 +40,20 @@ class TestHomePage(BaseTest):
         self.home_page.choose_model(model)
         self.home_page.click_search_button()
 
-        self.category_page = CategoryPage(self.driver)
-
-        for card in self.category_page.product_cards:
-            prices.append(self.review_page.get_price(card))
-
-        BasePage(self.driver).scroll_to_end()
-
-        while not self.category_page.is_disabled_navigation_link("next"):
-            self.category_page.click_next_page_link()
-
+        break_loop = True
+        while break_loop:
             self.category_page = CategoryPage(self.driver)
-
-            for card in self.category_page.product_cards:
-                prices.append(self.category_page.get_price(card))
-
+            prices_lists.append(self.category_page.get_prices())
             BasePage(self.driver).scroll_to_end()
+            if not self.category_page.is_disabled_navigation_link("next"):
+                self.category_page.click_next_page_link()
+            else:
+                break_loop = False
+
+        prices = []
+        for lists in prices_lists:
+            for item in lists:
+                prices.append(item)
 
         min_price = min(prices)
         max_price = max(prices)
@@ -65,4 +64,4 @@ class TestHomePage(BaseTest):
         print(f'Min price: {min_price} $. '
               f'Max price: {max_price} $. '
               f'Average price: {average_price} $. '
-              f'Price fluctuation: {price_fluctuation}')
+              f'Price fluctuation: {price_fluctuation}', prices_lists)
