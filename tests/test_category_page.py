@@ -1,8 +1,5 @@
 import pytest
 
-from pages.category_page import CategoryPage
-from pages.base_page import BasePage
-from tests.base_test import BaseTest
 from tests.conftest import get_test_data_dictreader
 
 
@@ -41,7 +38,7 @@ class TestCategoryPage:
     @pytest.mark.parametrize(
         'language, year, _',
         get_test_data_dictreader('years_filter.csv'))
-    def test_year_in_title(self, open_category_page, language, year, _) -> None:
+    def test_year_in_title(self, open_category_page, language, year, _):
         """Check that a specific year presents in product title.
 
         Steps:
