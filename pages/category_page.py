@@ -6,6 +6,7 @@ from pages.base_page import BasePage
 from selenium.webdriver import Remote
 from locators import LocatorsCategoryPage
 from components import DropdownComponent
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class CategoryPage(BasePage):
@@ -391,8 +392,9 @@ class CategoryPage(BasePage):
 
     @property
     def fourth_middle_pagination_link(self):
-        return self._driver.find_element(
-            *LocatorsCategoryPage.FOURTH_MIDDLE_PAGINATION_LINK)
+        return WebDriverWait(self._driver, 50).until(
+            EC.element_to_be_clickable(
+                LocatorsCategoryPage.FIFTH_MIDDLE_PAGINATION_LINK))
 
     @property
     def car_category_dropdown(self):
@@ -665,7 +667,8 @@ class CategoryPage(BasePage):
         self.third_middle_pagination_link.click()
 
     def click_fourth_middle_pagination_link(self):
-        self.fourth_middle_pagination_link.click()
+        ActionChains(self._driver).move_to_element(
+            self.fourth_middle_pagination_link).click().perform()
 
     def click_last_middle_pagination_link(self):
         self.last_middle_pagination_link.click()
@@ -684,17 +687,9 @@ class CategoryPage(BasePage):
                 prices.append(int(''.join(price.split(' '))))
         return prices
 
-    def get_titles(self):
-        titles = []
-        for card in self.product_cards:
-            title = card.find_element(*LocatorsCategoryPage.PRODUCT_TITLE).text
-            titles.append(title)
-        return titles
-
-    def right_link(self):
-        link = self._driver.find_element(*LocatorsCategoryPage.NEXT_PAGE_LINK)
-        attribute = link.get_attribute("class")
-        return attribute
+    def get_card_title(self, product_card):
+        return product_card.find_element(
+            *LocatorsCategoryPage.PRODUCT_TITLE).text
 
     def is_disabled_navigation_link(self, navigation_link):
         if navigation_link == "previous":
@@ -704,11 +699,3 @@ class CategoryPage(BasePage):
         link = self._driver.find_element(*locator)
         attribute = link.get_attribute("class")
         return "disabled" in attribute
-
-    def if_proper_year_in_titles(self, year):
-        for title in self.get_titles():
-            return year in title
-
-    def if_price_in_proper_range(self, price_from, price_to):
-        for price in self.get_prices():
-            return price_from <= price <= price_to
