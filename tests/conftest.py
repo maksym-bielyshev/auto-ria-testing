@@ -3,6 +3,7 @@ import csv
 from selenium import webdriver
 import time
 from pages.home_page import HomePage
+from pages.category_page import CategoryPage
 
 import configparser
 config = configparser.ConfigParser()
@@ -30,6 +31,14 @@ def open_home_page(init_driver):
     driver.get(config['urls']['home_page'])
     time.sleep(3)
     return HomePage(driver)
+
+
+@pytest.fixture(scope='function')
+def open_category_page(init_driver):
+    driver = init_driver
+    driver.get(config['urls']['category_page'])
+    time.sleep(3)
+    return CategoryPage(driver)
 
 
 def get_test_data(file_name: str) -> list:

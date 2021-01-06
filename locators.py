@@ -321,7 +321,7 @@ class LocatorsCategoryPage:
         By.ID,
         "floatingSearchButton")
 
-    PRODUCT_CARD_OBJECTS = (
+    PRODUCT_CARD_OBJECT = (
         By.CLASS_NAME,
         "content-bar")
     PREVIOUS_PAGE_LINK = (
