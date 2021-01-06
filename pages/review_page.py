@@ -32,3 +32,6 @@ class ReviewPage(BasePage):
     def click_offers(self):
         ActionChains(self._driver).move_to_element(
             self.offers).click().perform()
+
+    def get_title(self, card):
+        return card.find_element(*LocatorsReviewPage.PRODUCT_TITLE).text

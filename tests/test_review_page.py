@@ -1,6 +1,8 @@
 from tests.base_test import BaseTest
 from pages.review_page import ReviewPage
 from pages.category_page import CategoryPage
+from pages.home_page import HomePage
+from pages.base_page import BasePage
 
 
 class TestHomePage(BaseTest):
@@ -12,7 +14,6 @@ class TestHomePage(BaseTest):
         """
         self.driver.get("https://auto.ria.com/uk/reviews/")
         self.review_page = ReviewPage(self.driver)
-        self.category_page = CategoryPage(self.driver)
 
     def test_prices_analysis(self):
         SCORE = "5.0"
@@ -20,27 +21,48 @@ class TestHomePage(BaseTest):
 
         for card in self.review_page.product_cards:
             if self.review_page.get_score(card) == SCORE:
+                current_card = card
 
-                # get product_title
+        splitted_title = self.review_page.get_title(current_card).split()
+        brand = splitted_title[0]
+        model = splitted_title[-2]
+        year = splitted_title[-1]
 
-                self.driver.get("https://auto.ria.com/uk/reviews/")
+        self.driver.get("https://auto.ria.com/uk/")
 
-                # past product title and search
+        self.home_page = HomePage(self.driver)
 
-                for c in self.category_page.product_cards:
-                    prices.append(self.review_page.get_price(c))
+        self.home_page.year_to_dropdown.choose_dropdown_option(year)
+        self.home_page.year_from_dropdown.choose_dropdown_option(year)
 
-                    self.scroll_to_end()
+        self.home_page.choose_brand(brand)
+        self.home_page.choose_model(model)
+        self.home_page.click_search_button()
 
-                    while not self.category_page.is_disabled_navigation_link(
-                            "next"):
-                        self.scroll_to_end()
-                        self.category_page.click_next_page_link()
+        self.category_page = CategoryPage(self.driver)
 
-                        for card in self.review_page.product_cards:
-                            prices.append(self.review_page.get_price(card))
+        for card in self.category_page.product_cards:
+            prices.append(self.review_page.get_price(card))
 
-        print(f'Min price: {min(prices)}')
-        print(f'Max price: {max(prices)}')
-        print(f'Price fluctuation: {(sum(prices)/len(prices)-min(prices))/10}'
-              f'{(sum(prices)/len(prices)-max(prices))/10}')
+        BasePage(self.driver).scroll_to_end()
+
+        while not self.category_page.is_disabled_navigation_link("next"):
+            self.category_page.click_next_page_link()
+
+            self.category_page = CategoryPage(self.driver)
+
+            for card in self.review_page.product_cards:
+                prices.append(self.review_page.get_price(card))
+
+            BasePage(self.driver).scroll_to_end()
+
+        min_price = min(prices)
+        max_price = max(prices)
+        average_price = sum(prices)/len(prices)
+        price_fluctuation = (average_price-min(prices))/10, \
+                            (average_price-max(prices))/10
+
+        print(f'Min price: {min_price} $. '
+              f'Max price: {max_price} $. '
+              f'Average price: {average_price} $. '
+              f'Price fluctuation: {price_fluctuation}')
