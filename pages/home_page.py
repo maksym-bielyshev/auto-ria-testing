@@ -6,6 +6,7 @@ from components import DropdownComponent
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+
 class HomePage(BasePage):
     """Class for the home page of 'AUTO.RIA'"""
 
@@ -103,13 +104,17 @@ class HomePage(BasePage):
         self.brand_dropdown.send_keys(data)
         import time
         time.sleep(3)
-        self._driver.find_element_by_xpath("//body/div[@id='app']/main[1]/div[2]/div[2]/form[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]").click()
+        self._driver.find_element_by_xpath(
+            "//body/div[@id='app']/main[1]/div[2]/div[2]/form[1]/div[2]/div[1]"
+            "/div[2]/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]").click()
 
     def choose_model(self, data: str):
         self.model_dropdown.send_keys(data)
         import time
         time.sleep(3)
-        self._driver.find_element_by_xpath("//ul[@class='unstyle scrollbar autocomplete-select']//a[@class='item bold']").click()
+        self._driver.find_element_by_xpath(
+            "//ul[@class='unstyle scrollbar autocomplete-select']"
+            "//a[@class='item bold']").click()
 
     def choose_region(self, data: str):
         self.region_dropdown.send_keys(data)
