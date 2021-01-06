@@ -3,9 +3,6 @@ from pages.base_page import BasePage
 from locators import LocatorsHomeFilter
 from components import DropdownComponent
 
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-
 
 class HomePage(BasePage):
     """Class for the home page of 'AUTO.RIA'"""
