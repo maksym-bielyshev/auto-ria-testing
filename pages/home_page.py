@@ -79,6 +79,9 @@ class HomePage(BasePage):
     def search_button(self):
         return self._driver.find_element(*LocatorsHomeFilter.SEARCH_BUTTON)
 
+        # return WebDriverWait(self._driver, 20).until(
+        #     EC.presence_of_element_located(LocatorsHomeFilter.SEARCH_BUTTON))
+
     def click_all_autos(self):
         self.all_autos.click()
 
@@ -96,9 +99,17 @@ class HomePage(BasePage):
 
     def choose_brand(self, data: str):
         self.brand_dropdown.send_keys(data)
+        import time
+        time.sleep(3)
+        self._driver.find_element(LocatorsHomeFilter.
+                                  FIRST_ELEMENT_BRAND).click()
 
     def choose_model(self, data: str):
         self.model_dropdown.send_keys(data)
+        import time
+        time.sleep(3)
+        self._driver.find_element(LocatorsHomeFilter.
+                                  FIRST_ELEMENT_MODEL).click()
 
     def choose_region(self, data: str):
         self.region_dropdown.send_keys(data)
@@ -112,7 +123,7 @@ class HomePage(BasePage):
     def click_search_button(self):
         self._driver.execute_script("return document.readyState")
         import time
-        time.sleep(5)
+        time.sleep(3)
         self.search_button.click()
 
     def get_all_categories(self):

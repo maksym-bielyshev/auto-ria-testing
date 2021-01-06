@@ -36,7 +36,15 @@ class LocatorsHomeFilter:
     PRICE_TO = (
         By.XPATH, "//input[@id='priceTo']")
     SEARCH_BUTTON = (
-        By.CSS_SELECTOR, "button[type='submit']")
+        By.XPATH, "//button[@type='submit']")
+    FIRST_ELEMENT_BRAND = (
+        By.XPATH,
+        "//div[@id='app']/main[1]/div[2]/div[2]/form[1]/div[2]/div[1]/div[2]"
+        "/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]")
+    FIRST_ELEMENT_MODEL = (
+        By.XPATH,
+        "//ul[@class='unstyle scrollbar autocomplete-select']"
+        "//a[@class='item bold']")
 
 
 class LocatorsProductPage:
@@ -357,3 +365,20 @@ class LocatorsCategoryPage:
     PRODUCT_TITLE = (
         By.CLASS_NAME,
         "address")
+
+
+class LocatorsReviewPage:
+    PRODUCT_CARD = (
+        By.XPATH,
+        "//body//div//article")
+    PRODUCT_SCORE = (
+        By.CSS_SELECTOR,
+        ".reviews-car-cardrat-i-element.reviews-car-card_rating-val")
+    PRODUCT_PHOTO = (By.XPATH,
+                     "div[@class='reviews-car-cardi-top']//h3[1]//a[1]")
+    PRODUCT_OFFERS = (
+        By.XPATH, '//a[@class="offer-car_i-l"]/h4/span')
+    PRODUCT_PRICE = (
+        By.CSS_SELECTOR, ".bold.green.size22")
+    PRODUCT_TITLE = (By.XPATH, "//div[@class='reviews-car-cardi-top']"
+                               "//a[@class='reviews-cars_name-link']")

@@ -351,7 +351,7 @@ class CategoryPage(BasePage):
             *LocatorsCategoryPage.SEARCH_LINK)
 
     @property
-    def product_card(self):
+    def product_cards(self):
         return self._driver.find_elements(
             *LocatorsCategoryPage.PRODUCT_CARD_OBJECT)
 
@@ -647,6 +647,8 @@ class CategoryPage(BasePage):
         self.previous_page_link.click()
 
     def click_next_page_link(self):
+        import time
+        time.sleep(2)
         self.next_page_link.click()
 
     def click_first_page_link(self):
@@ -673,8 +675,17 @@ class CategoryPage(BasePage):
 
     def get_price(self, card):
         price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
-        if card is not None:
+        print(price)
+        if price != '' and price is not None:
             return int(''.join(price.split(' ')))
+
+    def get_prices(self):
+        prices = []
+        for card in self.product_cards:
+            price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
+            if price != '' and price is not None:
+                prices.append(int(''.join(price.split(' '))))
+        return prices
 
     def get_card_title(self, product_card):
         return product_card.find_element(
