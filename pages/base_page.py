@@ -26,8 +26,6 @@ class BasePage:
                     EC.visibility_of_element_located(
                         LocatorsBasePage.RUSSIAN_LINK))
             russian_link.click()
-        else:
-            pass
 
     def scroll_to_end(self):
         self._driver.execute_script(
