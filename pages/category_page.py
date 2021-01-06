@@ -668,7 +668,6 @@ class CategoryPage(BasePage):
         ActionChains(self._driver).move_to_element(
             self.fourth_middle_pagination_link).click().perform()
 
-
     def click_last_middle_pagination_link(self):
         self.last_middle_pagination_link.click()
 
