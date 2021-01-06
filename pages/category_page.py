@@ -668,6 +668,11 @@ class CategoryPage(BasePage):
     def click_last_middle_pagination_link(self):
         self.last_middle_pagination_link.click()
 
+    def get_price(self, card):
+        price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
+        if price is not None:
+            return int(''.join(price.split(' ')))
+
     def get_prices(self):
         prices = []
         for card in self.product_cards:

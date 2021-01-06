@@ -51,8 +51,8 @@ class TestHomePage(BaseTest):
 
             self.category_page = CategoryPage(self.driver)
 
-            for card in self.review_page.product_cards:
-                prices.append(self.review_page.get_price(card))
+            for card in self.category_page.product_cards:
+                prices.append(self.category_page.get_price(card))
 
             BasePage(self.driver).scroll_to_end()
 
