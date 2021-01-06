@@ -36,7 +36,7 @@ class LocatorsHomeFilter:
     PRICE_TO = (
         By.XPATH, "//input[@id='priceTo']")
     SEARCH_BUTTON = (
-        By.XPATH, "//button[@type='submit']//span")
+        By.CSS_SELECTOR, "button[type='submit']")
 
 
 class LocatorsProductPage:
@@ -329,7 +329,7 @@ class LocatorsCategoryPage:
         "//span[@class='page-item prev']//a")
     NEXT_PAGE_LINK = (
         By.XPATH,
-        "//span[@class='page-item next text-r']")
+        "//span[@class='page-item next text-r']//a")
     FIRST_PAGE_LINK = (
         By.XPATH,
         "//div[@id='searchPagination']//span[2]//a")
@@ -348,3 +348,10 @@ class LocatorsCategoryPage:
     FOURTH_MIDDLE_PAGINATION_LINK = (
         By.XPATH,
         "//div[@id='searchPagination']//span[7]//a")
+    PRODUCT_PRICE = (
+        By.CSS_SELECTOR,
+        ".bold.green.size22")
+    PRODUCT_TITLE = (
+        By.CLASS_NAME,
+        "address"
+    )

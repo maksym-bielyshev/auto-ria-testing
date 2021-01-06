@@ -1,3 +1,7 @@
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.support.wait import WebDriverWait
+
 from pages.base_page import BasePage
 from selenium.webdriver import Remote
 from locators import LocatorsCategoryPage
@@ -13,412 +17,413 @@ class CategoryPage(BasePage):
     @property
     def all_autos_button(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ALL_AUTOS_BUTTON)
+            *LocatorsCategoryPage.ALL_AUTOS_BUTTON)
 
     @property
     def used_autos_button(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.USED_AUTOS_BUTTON)
+            *LocatorsCategoryPage.USED_AUTOS_BUTTON)
 
     @property
     def new_autos_button(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.NEW_AUTOS_BUTTON)
+            *LocatorsCategoryPage.NEW_AUTOS_BUTTON)
 
     @property
     def autos_for_delivery_button(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.AUTOS_FOR_DELIVERY_BUTTON)
+            *LocatorsCategoryPage.AUTOS_FOR_DELIVERY_BUTTON)
 
     @property
     def verified_vin_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.VERIFIED_VIN_CHECKBOX)
+            *LocatorsCategoryPage.VERIFIED_VIN_CHECKBOX)
 
     @property
     def plate_number_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PLATE_NUMBER_CHECKBOX)
+            *LocatorsCategoryPage.PLATE_NUMBER_CHECKBOX)
 
     @property
     def sedan_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SEDAN_CHECKBOX)
+            *LocatorsCategoryPage.SEDAN_CHECKBOX)
 
     @property
     def crossover_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.CROSSOVER_CHECKBOX)
+            *LocatorsCategoryPage.CROSSOVER_CHECKBOX)
 
     @property
     def minivan_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.MINIVAN_CHECKBOX)
+            *LocatorsCategoryPage.MINIVAN_CHECKBOX)
 
     @property
     def hatchback_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.HATCHBACK_CHECKBOX)
+            *LocatorsCategoryPage.HATCHBACK_CHECKBOX)
 
     @property
     def universal_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.UNIVERSAL_CHECKBOX)
+            *LocatorsCategoryPage.UNIVERSAL_CHECKBOX)
 
     @property
     def coupe_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.COUPE_CHECKBOX)
+            *LocatorsCategoryPage.COUPE_CHECKBOX)
 
     @property
     def passenger_van_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PASSENGER_VAN_CHECKBOX)
+            *LocatorsCategoryPage.PASSENGER_VAN_CHECKBOX)
 
     @property
     def convertible_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.CONVERTIBLE_CHECKBOX)
+            *LocatorsCategoryPage.CONVERTIBLE_CHECKBOX)
 
     @property
     def pickup_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PICKUP_CHECKBOX)
+            *LocatorsCategoryPage.PICKUP_CHECKBOX)
 
     @property
     def liftback_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.LIFTBACK_CHECKBOX)
+            *LocatorsCategoryPage.LIFTBACK_CHECKBOX)
 
     @property
     def limousine_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.LIMOUSINE_CHECKBOX)
+            *LocatorsCategoryPage.LIMOUSINE_CHECKBOX)
 
     @property
     def other_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.OTHER_CHECKBOX)
+            *LocatorsCategoryPage.OTHER_CHECKBOX)
 
     @property
     def roadster_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ROADSTER_CHECKBOX)
+            *LocatorsCategoryPage.ROADSTER_CHECKBOX)
 
     @property
     def show_all_bodies_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SHOW_ALL_BODIES_LINK)
+            *LocatorsCategoryPage.SHOW_ALL_BODIES_LINK)
 
     @property
     def show_less_bodies_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SHOW_LESS_BODIES_LINK)
+            *LocatorsCategoryPage.SHOW_LESS_BODIES_LINK)
 
     @property
     def model_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.MODEL_FIELD)
+            *LocatorsCategoryPage.MODEL_FIELD)
 
     @property
     def another_model_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ANOTHER_MODEL_LINK)
+            *LocatorsCategoryPage.ANOTHER_MODEL_LINK)
 
     @property
     def exclude_brand_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.EXCLUDE_BRAND_LINK)
+            *LocatorsCategoryPage.EXCLUDE_BRAND_LINK)
 
     @property
     def exclude_brand_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.EXCLUDE_BRAND_FIELD)
+            *LocatorsCategoryPage.EXCLUDE_BRAND_FIELD)
 
     @property
     def price_from_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PRICE_FROM_FIELD)
+            *LocatorsCategoryPage.PRICE_FROM_FIELD)
 
     @property
     def price_to_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PRICE_TO_FIELD)
+            *LocatorsCategoryPage.PRICE_TO_FIELD)
 
     @property
     def bargain_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.BARGAIN_CHECKBOX)
+            *LocatorsCategoryPage.BARGAIN_CHECKBOX)
 
     @property
     def region_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.REGION_LINK)
+            *LocatorsCategoryPage.REGION_LINK)
 
     @property
     def city_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.CITY_FIELD)
+            *LocatorsCategoryPage.CITY_FIELD)
 
     @property
     def miles_from_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.MILES_FROM_FIELD)
+            *LocatorsCategoryPage.MILES_FROM_FIELD)
 
     @property
     def miles_to_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.MILES_TO_FIELD)
+            *LocatorsCategoryPage.MILES_TO_FIELD)
 
     @property
     def automaton_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.AUTOMATON_CHECKBOX)
+            *LocatorsCategoryPage.AUTOMATON_CHECKBOX)
 
     @property
     def tiptronic_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.TIPTRONIC_CHECKBOX)
+            *LocatorsCategoryPage.TIPTRONIC_CHECKBOX)
 
     @property
     def robot_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ROBOT_CHECKBOX)
+            *LocatorsCategoryPage.ROBOT_CHECKBOX)
 
     @property
     def variator_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.VARIATOR_CHECKBOX)
+            *LocatorsCategoryPage.VARIATOR_CHECKBOX)
 
     @property
     def show_all_gearboxes_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SHOW_ALL_GEARBOXES_LINK)
+            *LocatorsCategoryPage.SHOW_ALL_GEARBOXES_LINK)
 
     @property
     def show_less_gearboxes_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SHOW_LESS_GEARBOXES_LINK)
+            *LocatorsCategoryPage.SHOW_LESS_GEARBOXES_LINK)
 
     @property
     def petrol_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PETROL_CHECKBOX)
+            *LocatorsCategoryPage.PETROL_CHECKBOX)
 
     @property
     def diesel_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.DIESEL_CHECKBOX)
+            *LocatorsCategoryPage.DIESEL_CHECKBOX)
 
     @property
     def gas_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.GAS_CHECKBOX)
+            *LocatorsCategoryPage.GAS_CHECKBOX)
 
     @property
     def gas_petrol_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.GAS_PETROL_CHECKBOX)
+            *LocatorsCategoryPage.GAS_PETROL_CHECKBOX)
 
     @property
     def hybrid_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.HYBRID_CHECKBOX)
+            *LocatorsCategoryPage.HYBRID_CHECKBOX)
 
     @property
     def show_all_fuel_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SHOW_ALL_FUEL_LINK)
+            *LocatorsCategoryPage.SHOW_ALL_FUEL_LINK)
 
     @property
     def show_less_fuel_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SHOW_LESS_FUEL_LINK)
+            *LocatorsCategoryPage.SHOW_LESS_FUEL_LINK)
 
     @property
     def electro_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ELECTRO_CHECKBOX)
+            *LocatorsCategoryPage.ELECTRO_CHECKBOX)
 
     @property
     def other_fuel_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.OTHER_FUEL_CHECKBOX)
+            *LocatorsCategoryPage.OTHER_FUEL_CHECKBOX)
 
     @property
     def methane_gas_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.METHANE_GAS_CHECKBOX)
+            *LocatorsCategoryPage.METHANE_GAS_CHECKBOX)
 
     @property
     def propane_butane_gas_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PROPANE_BUTANE_GAS_CHECKBOX)
+            *LocatorsCategoryPage.PROPANE_BUTANE_GAS_CHECKBOX)
 
     @property
     def all_wheel_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ALL_WHEEL_CHECKBOX)
+            *LocatorsCategoryPage.ALL_WHEEL_CHECKBOX)
 
     @property
     def front_wheel_chekbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.FRONT_WHEEL_CHEKBOX)
+            *LocatorsCategoryPage.FRONT_WHEEL_CHEKBOX)
 
     @property
     def back_wheel_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.BACK_WHEEL_CHECKBOX)
+            *LocatorsCategoryPage.BACK_WHEEL_CHECKBOX)
 
     @property
     def engine_capacity_from_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ENGINE_CAPACITY_FROM_FIELD)
+            *LocatorsCategoryPage.ENGINE_CAPACITY_FROM_FIELD)
 
     @property
     def engine_capacity_to_field(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ENGINE_CAPACITY_TO_FIELD)
+            *LocatorsCategoryPage.ENGINE_CAPACITY_TO_FIELD)
 
     @property
     def customs_clearance_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.CUSTOMS_CLEARANCE_CHECKBOX)
+            *LocatorsCategoryPage.CUSTOMS_CLEARANCE_CHECKBOX)
 
     @property
     def non_customs_clearance_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.NON_CUSTOMS_CLEARANCE_CHECKBOX)
+            *LocatorsCategoryPage.NON_CUSTOMS_CLEARANCE_CHECKBOX)
 
     @property
     def auto_in_ukraine_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.AUTO_IN_UKRAINE_CHECKBOX)
+            *LocatorsCategoryPage.AUTO_IN_UKRAINE_CHECKBOX)
 
     @property
     def auto_not_in_ukraine_checkbox(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.AUTO_NOT_IN_UKRAINE_CHECKBOX)
+            *LocatorsCategoryPage.AUTO_NOT_IN_UKRAINE_CHECKBOX)
 
     @property
     def fixed_lacquer_select(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.FIXED_LACQUER_SELECT)
+            *LocatorsCategoryPage.FIXED_LACQUER_SELECT)
 
     @property
     def not_fixed_select(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.NOT_FIXED_SELECT)
+            *LocatorsCategoryPage.NOT_FIXED_SELECT)
 
     @property
     def not_damaged_select(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.NOT_DAMAGED_SELECT)
+            *LocatorsCategoryPage.NOT_DAMAGED_SELECT)
 
     @property
     def fixed_select(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.FIXED_SELECT)
+            *LocatorsCategoryPage.FIXED_SELECT)
 
     @property
     def not_fixed_damaged_select(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.NOT_FIXED_DAMAGED_SELECT)
+            *LocatorsCategoryPage.NOT_FIXED_DAMAGED_SELECT)
 
     @property
     def unsuitable_select(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.UNSUITABLE_SELECT)
+            *LocatorsCategoryPage.UNSUITABLE_SELECT)
 
     @property
     def reset_filters_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.RESET_FILTERS_LINK)
+            *LocatorsCategoryPage.RESET_FILTERS_LINK)
 
     @property
     def advanced_search_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.ADVANCED_SEARCH_LINK)
+            *LocatorsCategoryPage.ADVANCED_SEARCH_LINK)
 
     @property
     def search_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SEARCH_LINK)
+            *LocatorsCategoryPage.SEARCH_LINK)
 
     @property
     def product_card(self):
-        return self._driver.find_element(
-            LocatorsCategoryPage.PRODUCT_CARD_OBJECTS)
+        return self._driver.find_elements(
+            *LocatorsCategoryPage.PRODUCT_CARD_OBJECT)
 
     @property
     def previous_page_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.PRODUCT_CARD_OBJECTS)
+            *LocatorsCategoryPage.PRODUCT_CARD_OBJECT)
 
     @property
     def next_page_link(self):
-        return self._driver.find_element(
-            LocatorsCategoryPage.NEXT_PAGE_LINK)
+        return WebDriverWait(self._driver, 20).until(
+            EC.element_to_be_clickable(LocatorsCategoryPage.NEXT_PAGE_LINK))
 
     @property
     def first_page_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.FIRST_PAGE_LINK)
+            *LocatorsCategoryPage.FIRST_PAGE_LINK)
 
     @property
     def last_page_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.LAST_PAGE_LINK)
+            *LocatorsCategoryPage.LAST_PAGE_LINK)
 
     @property
     def first_middle_pagination_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.FIRST_MIDDLE_PAGINATION_LINK)
+            *LocatorsCategoryPage.FIRST_MIDDLE_PAGINATION_LINK)
 
     @property
     def second_middle_pagination_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.SECOND_MIDDLE_PAGINATION_LINK)
+            *LocatorsCategoryPage.SECOND_MIDDLE_PAGINATION_LINK)
 
     @property
     def third_middle_pagination_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.THIRD_MIDDLE_PAGINATION_LINK)
+            *LocatorsCategoryPage.THIRD_MIDDLE_PAGINATION_LINK)
 
     @property
     def fourth_middle_pagination_link(self):
         return self._driver.find_element(
-            LocatorsCategoryPage.FOURTH_MIDDLE_PAGINATION_LINK)
+            *LocatorsCategoryPage.FOURTH_MIDDLE_PAGINATION_LINK)
 
     @property
     def car_category_dropdown(self):
         return DropdownComponent(self._driver,
-                                 LocatorsCategoryPage.CAR_CATEGORY_DROPDOWN)
+                                 *LocatorsCategoryPage.CAR_CATEGORY_DROPDOWN)
 
     @property
     def damage_dropdown(self):
         return DropdownComponent(self._driver,
-                                 LocatorsCategoryPage.DAMAGE_DROPDOWN)
+                                 *LocatorsCategoryPage.DAMAGE_DROPDOWN)
 
     @property
     def not_on_the_move_dropdown(self):
-        return DropdownComponent(self._driver,
-                                 LocatorsCategoryPage.NOT_ON_THE_MOVE_DROPDOWN)
+        return DropdownComponent(
+            self._driver,
+            *LocatorsCategoryPage.NOT_ON_THE_MOVE_DROPDOWN)
 
     @property
     def sort_dropdown(self):
         return DropdownComponent(self._driver,
-                                 LocatorsCategoryPage.SORT_DROPDOWN)
+                                 *LocatorsCategoryPage.SORT_DROPDOWN)
 
     @property
     def period_dropdown(self):
         return DropdownComponent(self._driver,
-                                 LocatorsCategoryPage.PERIOD_DROPDOWN)
+                                 *LocatorsCategoryPage.PERIOD_DROPDOWN)
 
     @property
     def brand_dropdown(self):
         return DropdownComponent(self._driver,
-                                 LocatorsCategoryPage.BRAND_DROPDOWN)
+                                 *LocatorsCategoryPage.BRAND_DROPDOWN)
 
     @property
     def year_from_dropdown(self):
@@ -433,7 +438,7 @@ class CategoryPage(BasePage):
     @property
     def currency_dropdown(self):
         return DropdownComponent(self._driver,
-                                 LocatorsCategoryPage.CURRENCY_DROPDOWN)
+                                 *LocatorsCategoryPage.CURRENCY_DROPDOWN)
 
     def click_all_autos_button(self):
         self.all_autos_button.click()
@@ -659,3 +664,21 @@ class CategoryPage(BasePage):
 
     def click_fourth_middle_pagination_link(self):
         self.fourth_middle_pagination_link.click()
+
+    def get_price(self, card):
+        price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
+        if card is not None:
+            return int(''.join(price.split(' ')))
+
+    def get_card_title(self, product_card):
+        return product_card.find_element(
+            *LocatorsCategoryPage.PRODUCT_TITLE).text
+
+    def is_disabled_navigation_link(self, navigation_link):
+        if navigation_link == "previous":
+            locator = LocatorsCategoryPage.PREVIOUS_PAGE_LINK
+        elif navigation_link == "next":
+            locator = LocatorsCategoryPage.NEXT_PAGE_LINK
+        link = self._driver.find_element(*locator)
+        attribute = link.get_attribute("class")
+        return "disabled" in attribute
