@@ -39,8 +39,7 @@ class LocatorsHomeFilter:
         By.XPATH, "//button[@type='submit']")
     FIRST_ELEMENT_BRAND = (
         By.XPATH,
-        "//div[@id='app']/main[1]/div[2]/div[2]/form[1]/div[2]/div[1]/div[2]"
-        "/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]")
+        "//body/div[@id='app']/main[1]/div[2]/div[2]/form[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]")
     FIRST_ELEMENT_MODEL = (
         By.XPATH,
         "//ul[@class='unstyle scrollbar autocomplete-select']"

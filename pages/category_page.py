@@ -394,7 +394,7 @@ class CategoryPage(BasePage):
     def fourth_middle_pagination_link(self):
         return WebDriverWait(self._driver, 50).until(
             EC.element_to_be_clickable(
-                LocatorsCategoryPage.FIFTH_MIDDLE_PAGINATION_LINK))
+                LocatorsCategoryPage.FOURTH_MIDDLE_PAGINATION_LINK))
 
     @property
     def car_category_dropdown(self):
@@ -641,6 +641,8 @@ class CategoryPage(BasePage):
         self.advanced_search_link.click()
 
     def click_search_link(self):
+        import time
+        time.sleep(5)
         self.search_link.click()
 
     def click_previous_page_link(self):
@@ -648,10 +650,12 @@ class CategoryPage(BasePage):
 
     def click_next_page_link(self):
         import time
-        time.sleep(2)
+        time.sleep(5)
         self.next_page_link.click()
 
     def click_first_page_link(self):
+        import time
+        time.sleep(5)
         self.first_page_link.click()
 
     def click_last_page_link(self):
@@ -667,15 +671,15 @@ class CategoryPage(BasePage):
         self.third_middle_pagination_link.click()
 
     def click_fourth_middle_pagination_link(self):
-        ActionChains(self._driver).move_to_element(
-            self.fourth_middle_pagination_link).click().perform()
+        self.fourth_middle_pagination_link.click()
+        import time
+        time.sleep(3)
 
     def click_last_middle_pagination_link(self):
         self.last_middle_pagination_link.click()
 
     def get_price(self, card):
         price = card.find_element(*LocatorsCategoryPage.PRODUCT_PRICE).text
-        print(price)
         if price != '' and price is not None:
             return int(''.join(price.split(' ')))
 
@@ -687,9 +691,13 @@ class CategoryPage(BasePage):
                 prices.append(int(''.join(price.split(' '))))
         return prices
 
-    def get_card_title(self, product_card):
-        return product_card.find_element(
-            *LocatorsCategoryPage.PRODUCT_TITLE).text
+    def get_card_titles(self):
+        titles = []
+        for card in self.product_cards:
+            card_title = card.find_element(*LocatorsCategoryPage.PRODUCT_TITLE).text
+            if card_title is not None and card_title is not '':
+                titles.append(card_title)
+        return titles
 
     def is_disabled_navigation_link(self, navigation_link):
         if navigation_link == "previous":

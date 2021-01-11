@@ -100,15 +100,15 @@ class HomePage(BasePage):
     def choose_brand(self, data: str):
         self.brand_dropdown.send_keys(data)
         import time
-        time.sleep(3)
-        self._driver.find_element(LocatorsHomeFilter.
+        time.sleep(5)
+        self._driver.find_element(*LocatorsHomeFilter.
                                   FIRST_ELEMENT_BRAND).click()
 
     def choose_model(self, data: str):
         self.model_dropdown.send_keys(data)
         import time
-        time.sleep(3)
-        self._driver.find_element(LocatorsHomeFilter.
+        time.sleep(5)
+        self._driver.find_element(*LocatorsHomeFilter.
                                   FIRST_ELEMENT_MODEL).click()
 
     def choose_region(self, data: str):

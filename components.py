@@ -42,3 +42,5 @@ class DropdownComponent:
         """
         self._find_dropdown()
         self.checkbox_container.select_by_visible_text(data)
+        import time
+        time.sleep(3)
